@@ -1,6 +1,6 @@
 package com.kinsey.archmark.Model
 
-class Target {
+class TargetFace {
 
     var rings: MutableList<Ring> = mutableListOf()
 
