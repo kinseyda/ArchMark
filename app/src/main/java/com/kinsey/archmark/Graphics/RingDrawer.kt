@@ -12,7 +12,7 @@ class RingDrawer {
             style = Paint.Style.FILL
         }
 
-    fun drawRing(canvas: Canvas, ring: Ring, centerX: Int, centerY: Int, viewDiameter: Int) {
-        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), viewDiameter.toFloat(), paint)
+    fun drawRing(canvas: Canvas, ring: Ring, centerX: Int, centerY: Int, viewRadius: Int) {
+        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), viewRadius.toFloat(), paint)
     }
 }

@@ -7,7 +7,7 @@ import android.view.View
 import com.kinsey.archmark.Model.TargetFace
 import java.lang.Integer.min
 
-class TargetView (context: Context, attrs: AttributeSet, private var targetFace: TargetFace): View(context, attrs) {
+class TargetView (context: Context, private var targetFace: TargetFace): View(context) {
     private var ringDrawer: RingDrawer = RingDrawer()
 
     private var centerX = this.width/2
@@ -16,9 +16,9 @@ class TargetView (context: Context, attrs: AttributeSet, private var targetFace:
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val diameter = min(this.width, this.height)
+        val radius = min(this.width, this.height)/2
         for (ring in this.targetFace.rings) {
-            this.ringDrawer.drawRing(canvas, ring, centerX, centerY, diameter)
+            this.ringDrawer.drawRing(canvas, ring, centerX, centerY, radius)
         }
     }
 
