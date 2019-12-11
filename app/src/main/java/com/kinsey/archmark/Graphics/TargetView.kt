@@ -7,7 +7,7 @@ import android.view.View
 import com.kinsey.archmark.Model.TargetFace
 import java.lang.Integer.min
 
-class TargetView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, private var targetFace: TargetFace): View(context, attrs, defStyleAttr) {
+class TargetView (context: Context, attrs: AttributeSet, private var targetFace: TargetFace): View(context, attrs) {
     private var ringDrawer: RingDrawer = RingDrawer()
 
     private var centerX = this.width/2
