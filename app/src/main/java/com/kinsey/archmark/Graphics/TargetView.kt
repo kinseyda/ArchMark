@@ -16,7 +16,7 @@ class TargetView (context: Context, private var targetFace: TargetFace): View(co
         var centerY = this.height/2
         val radius = min(this.width, this.height)/2
         for (ring in this.targetFace.rings) {
-            this.ringDrawer.drawRing(canvas, ring, centerX, centerY, radius)
+            this.ringDrawer.drawRing(canvas, ring, this.targetFace.rings.size, centerX, centerY, radius)
         }
     }
 

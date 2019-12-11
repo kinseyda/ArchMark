@@ -28,7 +28,22 @@ class RingDrawer {
     }
 
 
-    fun drawRing(canvas: Canvas, ring: Ring, centerX: Int, centerY: Int, viewRadius: Int) {
-        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), viewRadius.toFloat(), paint)
+    fun drawRing(canvas: Canvas, ring: Ring, outOf: Int,centerX: Int, centerY: Int, viewRadius: Int) {
+        val ringRadius = viewRadius*(1 + (1 - ring.score)/ outOf)
+
+        paint.apply {
+            color = outline
+        }
+        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius + outlineWidth, paint)
+
+        val c = colorMap[ring.score.toInt()]
+        c?.let {
+            //Only null if score is not in dictionary
+            paint.apply {
+                color = c
+            }
+        }
+        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius, paint)
+
     }
 }
