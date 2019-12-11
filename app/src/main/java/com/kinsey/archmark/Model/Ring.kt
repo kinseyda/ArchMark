@@ -1,5 +1,5 @@
 package com.kinsey.archmark.Model
 
-class Ring(val diameter: Float, val score: Float) {
+class Ring(val radius: Float, val score: Float) {
 
 }
