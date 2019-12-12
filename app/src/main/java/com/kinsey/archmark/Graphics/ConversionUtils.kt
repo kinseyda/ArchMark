@@ -9,7 +9,7 @@ fun pixelToCm(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace
 
 fun cmCoordinatesToPolar(x: Float, y: Float, targetFace: TargetFace): Pair<Float, Float> {
     val radius = sqrt(((targetFace.diameter / 2) - x).toDouble().pow(2.0) + ((targetFace.diameter / 2) - y).toDouble().pow(2.0)).toFloat()
-    val angle = tan(((targetFace.diameter/2 -x)/((targetFace.diameter/2) - y)))
+    val angle = atan(((targetFace.diameter/2 - x)/((targetFace.diameter/2) - y)))
     return Pair(angle, radius)
 }
 
