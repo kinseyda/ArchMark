@@ -9,9 +9,9 @@ class ArrowMarker(val arrow: Arrow, var targetView: TargetView) {
 
     private val paint = Paint().apply{
         style = Paint.Style.FILL
-        color = Color.BLACK
+        color = Color.MAGENTA
     }
-    private val markerRadius = 5f
+    private val markerRadius = 10f
 
     fun drawMarker(canvas: Canvas) {
         val cmCoords = cmPolarToCoordinates(arrow.angle, arrow.distance, targetView.targetFace)
