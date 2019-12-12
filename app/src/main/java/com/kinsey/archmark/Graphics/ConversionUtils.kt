@@ -14,3 +14,14 @@ fun cmCoordinatesToPolar(x: Int, y: Int, targetFace: TargetFace): Pair<Float, Fl
     val angle = tan(((targetFace.diameter/2 -x)/((targetFace.diameter/2) - y)))
     return Pair(angle, radius)
 }
+
+fun cmPolarToCoordinates(angle: Float, radius: Float, targetFace: TargetFace): Pair<Float, Float> {
+    val x = (sin(angle)*radius-(targetFace.diameter/2))*-1
+    val y = (cos(angle)*radius-(targetFace.diameter/2))*-1
+    return Pair(x, y)
+}
+
+fun cmToPixel(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
+    return Pair(((x /targetFace.diameter)*targetView.width), ((y /targetFace.diameter)*targetView.height))
+
+}
