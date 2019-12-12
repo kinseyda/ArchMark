@@ -6,4 +6,16 @@ class End {
     fun addArrow(arrow: Arrow) {
         this.arrows.add(arrow)
     }
+
+    /**
+     * Retrn the total score of every arrow shot this end
+     */
+    fun endTotal(): Float {
+        var c = 0f
+        for (arrow in arrows) {
+            c += arrow.findRing().score
+        }
+        return c
+    }
+
 }
