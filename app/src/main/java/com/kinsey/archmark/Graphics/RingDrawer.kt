@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import com.kinsey.archmark.Model.Ring
+import com.kinsey.archmark.Model.TargetFace
 
 class RingDrawer {
     private val paint =
@@ -28,8 +29,8 @@ class RingDrawer {
     }
 
 
-    fun drawRing(canvas: Canvas, ring: Ring, outOf: Int,centerX: Int, centerY: Int, viewRadius: Int) {
-        val ringRadius = viewRadius*(1 + (1 - ring.score)/ outOf)
+    fun drawRing(canvas: Canvas, ring: Ring, targetFace: TargetFace,centerX: Int, centerY: Int, viewRadius: Int) {
+        val ringRadius = viewRadius*(ring.radius/(targetFace.diameter/2))
 
         paint.apply {
             color = outline
