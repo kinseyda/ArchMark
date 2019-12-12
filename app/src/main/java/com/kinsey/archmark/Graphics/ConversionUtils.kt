@@ -14,8 +14,8 @@ fun cmCoordinatesToPolar(x: Float, y: Float, targetFace: TargetFace): Pair<Float
 }
 
 fun cmPolarToCoordinates(angle: Float, radius: Float, targetFace: TargetFace): Pair<Float, Float> {
-    val x = (sin(angle)*radius-(targetFace.diameter/2))*-1
-    val y = (cos(angle)*radius-(targetFace.diameter/2))*-1
+    val x = ((targetFace.diameter/2)- sin(angle)*radius)
+    val y = ((targetFace.diameter/2) - cos(angle)*radius)
     return Pair(x, y)
 }
 
