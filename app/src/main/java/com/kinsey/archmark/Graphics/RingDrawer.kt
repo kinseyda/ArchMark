@@ -27,7 +27,7 @@ class RingDrawer {
         colorMap[10] = Color.YELLOW
         colorMap[11] = Color.YELLOW
     }
-
+    //TODO Make the above style stuff static
 
     fun drawRing(canvas: Canvas, ring: Ring, targetFace: TargetFace,centerX: Int, centerY: Int, viewRadius: Int) {
         val ringRadius = viewRadius*(ring.radius/(targetFace.diameter/2))
