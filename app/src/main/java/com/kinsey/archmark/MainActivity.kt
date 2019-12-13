@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         this.arrowTable?.addView(row)
 
         this.card.newEnd()
+        this.targetView?.invalidate()
     }
 
 
