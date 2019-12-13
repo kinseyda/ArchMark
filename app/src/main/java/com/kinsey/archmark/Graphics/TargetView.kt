@@ -23,7 +23,6 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
             val polar = cmCoordinatesToPolar(cm.first, cm.second, targetFace)
             val arrow = Arrow(polar.first, polar.second, targetFace)
             this.card.addArrow(arrow)
-            this.arrowMarkers.add(ArrowMarker(arrow, this))
         }
 
         //View is now "out of date" so we have to tell it to draw again
@@ -41,6 +40,11 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
         val radius = min(this.width, this.height)/2
         for (ring in this.targetFace.rings) {
             this.ringDrawer.drawRing(canvas, ring, this.targetFace, centerX, centerY, radius)
+        }
+
+        this.arrowMarkers.clear()
+        for (arrow in this.card.currentEnd().arrows) {
+            this.arrowMarkers.add(ArrowMarker(arrow, this))
         }
 
         //Draw arrow markers
