@@ -22,7 +22,7 @@ class TargetView (context: Context, var targetFace: TargetFace): View(context) {
         if (event.action == MotionEvent.ACTION_UP) {
             val cm = pixelToCm(event.x, event.y, this, targetFace)
             val polar = cmCoordinatesToPolar(cm.first, cm.second, targetFace)
-            val arrow = Arrow(polar.first, polar.second)
+            val arrow = Arrow(polar.first, polar.second, targetFace)
             this.card.addArrow(arrow)
             this.arrowMarkers.add(ArrowMarker(arrow, this))
         }
