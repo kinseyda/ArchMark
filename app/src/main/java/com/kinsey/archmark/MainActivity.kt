@@ -40,9 +40,7 @@ class MainActivity : AppCompatActivity() {
     fun onFinishEndClicked(v: View) {
         var row = TableRow(this)
         for (arrow in card.currentEnd().arrows) {
-            var tv = TextView(this)
-            tv.text = arrow.findRing().score.toString()
-            row.addView(tv)
+            row.addView(TextView(this).apply{text = arrow.findRing().score.toString()})
         }
         this.arrowTable?.addView(row)
 
