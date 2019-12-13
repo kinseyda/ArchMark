@@ -3,9 +3,14 @@ package com.kinsey.archmark
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.AttributeSet
+import android.view.View
+import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.children
 import com.kinsey.archmark.Graphics.TargetView
+import com.kinsey.archmark.Model.Card
 import com.kinsey.archmark.Model.TargetFace
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -16,16 +21,33 @@ class MainActivity : AppCompatActivity() {
 
     //Components
     var targetView: TargetView? = null
+    var arrowTable: TableLayout? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         this.targetView = TargetView(this, this.targetFace, this.card)
+        this.arrowTable = findViewById(R.id.arrowTable)
 
-        setContentView(R.layout.activity_main)
 
         val constraintLayout: ConstraintLayout = findViewById(R.id.target_layout)
-        constraintLayout.addView(targetView)
+        constraintLayout.addView(this.targetView)
 
     }
+
+    fun onFinishEndClicked(v: View) {
+        var row = TableRow(this)
+        for (arrow in card.currentEnd().arrows) {
+            var tv = TextView(this)
+            tv.text = arrow.findRing().score.toString()
+            row.addView(tv)
+        }
+        this.arrowTable?.addView(row)
+
+        this.card.newEnd()
+    }
+
+
 }
