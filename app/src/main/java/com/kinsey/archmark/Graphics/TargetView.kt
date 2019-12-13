@@ -12,10 +12,9 @@ import com.kinsey.archmark.Model.Card
 import com.kinsey.archmark.Model.TargetFace
 import java.lang.Integer.min
 
-class TargetView (context: Context, var targetFace: TargetFace): View(context) {
+class TargetView (context: Context, var targetFace: TargetFace, var card: Card): View(context) {
     private var ringDrawer: RingDrawer = RingDrawer()
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
-    var card = Card()
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
