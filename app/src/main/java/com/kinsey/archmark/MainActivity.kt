@@ -13,6 +13,11 @@ import com.kinsey.archmark.Graphics.TargetView
 import com.kinsey.archmark.Model.Card
 import com.kinsey.archmark.Model.TargetFace
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class MainActivity : AppCompatActivity() {
     //Model
@@ -39,9 +44,18 @@ class MainActivity : AppCompatActivity() {
 
     fun onFinishEndClicked(v: View) {
         var row = TableRow(this)
+
         for (arrow in card.currentEnd().arrows) {
             row.addView(TextView(this).apply{text = arrow.findRing().score.toString()})
         }
+
+        //Add end total
+        row.addView(TextView(this).apply {text = card.currentEnd().endTotal().toString()})
+        //Add cumulative total
+        row.addView((TextView(this).apply {text = card.cumulativeScore().toString()}))
+
+        row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
+
         this.arrowTable?.addView(row)
 
         this.card.newEnd()
