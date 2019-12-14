@@ -15,11 +15,11 @@ class Card {
     }
 
     fun currentEnd(): End {
-        return ends.last()
+        return this.ends.last()
     }
 
     fun newEnd() {
-        ends.add(End())
+        this.ends.add(End())
     }
 
     fun addArrow(arrow: Arrow) {
