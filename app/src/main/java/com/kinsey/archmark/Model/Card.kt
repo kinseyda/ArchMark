@@ -6,6 +6,14 @@ class Card {
         newEnd()
     }
 
+    fun cumulativeScore(): Float {
+        var c = 0f
+        for (end in this.ends) {
+            c += end.endTotal()
+        }
+        return c
+    }
+
     fun currentEnd(): End {
         return ends.last()
     }
