@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ArchMark</string>
     <string name="finishEndButton">Finish End</string>
+    <string name="arrowNum">Arrow %1$d</string>
+    <string name="endTotal">End</string>
+    <string name="cumulativeTotal">Total</string>
 </resources>

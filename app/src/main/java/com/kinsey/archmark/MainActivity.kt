@@ -35,13 +35,28 @@ class MainActivity : AppCompatActivity() {
 
         this.targetView = TargetView(this, this.targetFace, this.card)
         this.arrowTable = findViewById(R.id.arrowTable)
-
+        addArrowTableMargin(3)
 
         val constraintLayout: ConstraintLayout = findViewById(R.id.target_layout)
         constraintLayout.addView(this.targetView)
 
     }
 
+
+    private fun addArrowTableMargin(arrows: Int) {
+        var row = TableRow(this)
+        row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
+
+        for (i in 1..arrows) {
+            row.addView(TextView(this).apply{text = getString(R.string.arrowNum, i)})
+        }
+
+        row.addView(TextView(this).apply{text = getString(R.string.endTotal)})
+
+        row.addView(TextView(this).apply{text = getString(R.string.cumulativeTotal)})
+
+        this.arrowTable?.addView(row)
+    }
 
     fun onFinishEndClicked(v: View) {
         var row = TableRow(this)
