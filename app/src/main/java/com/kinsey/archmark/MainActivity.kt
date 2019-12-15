@@ -42,17 +42,24 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     fun onFinishEndClicked(v: View) {
         var row = TableRow(this)
 
         for (arrow in card.currentEnd().arrows) {
-            row.addView(TextView(this).apply{text = arrow.findRing().score.toString()})
+            row.addView(TextView(this).apply{
+                text = arrow.findRing().score.toString()
+            })
         }
 
         //Add end total
-        row.addView(TextView(this).apply {text = card.currentEnd().endTotal().toString()})
+        row.addView(TextView(this).apply {
+            text = card.currentEnd().endTotal().toString()
+        })
         //Add cumulative total
-        row.addView((TextView(this).apply {text = card.cumulativeScore().toString()}))
+        row.addView((TextView(this).apply {
+            text = card.cumulativeScore().toString()
+        }))
 
         row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
 
