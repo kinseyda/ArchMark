@@ -5,7 +5,7 @@ package com.kinsey.archmark.Model
  */
 class Arrow(val angle: Float, val distance: Float, val targetFace: TargetFace, var forScore: Boolean = true) {
 
-    fun findRing(): Ring {
+    fun findRing(): Ring? {
         return this.targetFace.findRing(this)
     }
 

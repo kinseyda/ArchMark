@@ -8,12 +8,12 @@ class End {
     }
 
     /**
-     * Retrn the total score of every arrow shot this end
+     * Return the total score of every arrow shot this end
      */
     fun endTotal(): Float {
         var c = 0f
         for (arrow in arrows) {
-            c += arrow.findRing().score
+            c += arrow.findRing()?.score ?: 0f
         }
         return c
     }

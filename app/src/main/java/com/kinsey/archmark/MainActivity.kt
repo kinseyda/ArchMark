@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 
         for (arrow in card.currentEnd().arrows) {
             row.addView(TextView(this).apply{
-                text = arrow.findRing().score.toString()
+                text = (arrow.findRing()?.score ?: 0f).toString()
             })
         }
 

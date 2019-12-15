@@ -13,10 +13,15 @@ class TargetFace(sizes: List<Float>, scores: List<Float>, val diameter: Float) {
     /**
      * Finds the ring that an arrow landed on
      */
-    fun findRing(arrow:Arrow): Ring {
+    fun findRing(arrow:Arrow): Ring? {
 
         val distance = arrow.distance
 
+        //First check if arrow is on target
+        if (distance > this.diameter) {
+            return null
+        }
+        
         //Find the smallest ring that has a radius greater than distance
         var smallest = rings.first()
         for (ring in this.rings) {
