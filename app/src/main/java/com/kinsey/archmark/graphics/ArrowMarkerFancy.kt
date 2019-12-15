@@ -1,9 +1,9 @@
-package com.kinsey.archmark.Graphics
+package com.kinsey.archmark.graphics
 
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import com.kinsey.archmark.Model.Arrow
+import com.kinsey.archmark.model.Arrow
 import java.lang.Math.PI
 import kotlin.math.cos
 import kotlin.math.sin

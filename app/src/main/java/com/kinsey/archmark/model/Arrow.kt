@@ -1,4 +1,4 @@
-package com.kinsey.archmark.Model
+package com.kinsey.archmark.model
 
 /**
  * Angle in radians from north (counter clockwise is positive, clockwise is negative), distance in cm

@@ -2,21 +2,14 @@ package com.kinsey.archmark
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.View
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
-import com.kinsey.archmark.Graphics.TargetView
-import com.kinsey.archmark.Model.Card
-import com.kinsey.archmark.Model.TargetFace
-import kotlinx.android.synthetic.main.activity_main.*
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
+import com.kinsey.archmark.graphics.TargetView
+import com.kinsey.archmark.model.Card
+import com.kinsey.archmark.model.TargetFace
 
 
 class MainActivity : AppCompatActivity() {

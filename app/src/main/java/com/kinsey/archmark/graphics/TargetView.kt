@@ -1,15 +1,12 @@
-package com.kinsey.archmark.Graphics
+package com.kinsey.archmark.graphics
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.kinsey.archmark.Model.Arrow
-import com.kinsey.archmark.Model.Card
-import com.kinsey.archmark.Model.TargetFace
+import com.kinsey.archmark.model.Arrow
+import com.kinsey.archmark.model.Card
+import com.kinsey.archmark.model.TargetFace
 import java.lang.Integer.min
 
 class TargetView (context: Context, var targetFace: TargetFace, var card: Card): View(context) {

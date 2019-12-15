@@ -1,4 +1,4 @@
-package com.kinsey.archmark.Model
+package com.kinsey.archmark.model
 
 class Card {
     var ends: MutableList<End> = mutableListOf<End>()

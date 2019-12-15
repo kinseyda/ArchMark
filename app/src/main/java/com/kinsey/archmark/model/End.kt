@@ -1,4 +1,4 @@
-package com.kinsey.archmark.Model
+package com.kinsey.archmark.model
 
 class End {
     var arrows: MutableList<Arrow> = mutableListOf<Arrow>()

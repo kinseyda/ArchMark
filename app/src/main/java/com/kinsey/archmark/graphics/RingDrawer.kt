@@ -1,10 +1,10 @@
-package com.kinsey.archmark.Graphics
+package com.kinsey.archmark.graphics
 
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import com.kinsey.archmark.Model.Ring
-import com.kinsey.archmark.Model.TargetFace
+import com.kinsey.archmark.model.Ring
+import com.kinsey.archmark.model.TargetFace
 
 class RingDrawer {
     private val paint =

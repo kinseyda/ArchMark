@@ -1,6 +1,6 @@
-package com.kinsey.archmark.Graphics
+package com.kinsey.archmark.graphics
 
-import com.kinsey.archmark.Model.TargetFace
+import com.kinsey.archmark.model.TargetFace
 import kotlin.math.*
 
 fun pixelToCm(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
