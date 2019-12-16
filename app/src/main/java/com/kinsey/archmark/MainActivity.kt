@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         this.arrowTable = findViewById(R.id.arrowTable)
         addArrowTableMargin(3)
 
-        val constraintLayout: ConstraintLayout = findViewById(R.id.target_layout)
+        val constraintLayout: ConstraintLayout = findViewById(R.id.targetLayout)
         constraintLayout.addView(this.targetView)
 
     }

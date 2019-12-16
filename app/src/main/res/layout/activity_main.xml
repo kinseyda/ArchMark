@@ -11,7 +11,7 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/target_layout"
+        android:id="@+id/targetLayout"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/finishEnd"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/target_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/targetLayout" />
 
     <ScrollView
         android:id="@+id/scrollView"
