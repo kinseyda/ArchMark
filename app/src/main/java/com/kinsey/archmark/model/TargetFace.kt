@@ -18,7 +18,7 @@ class TargetFace(sizes: List<Float>, scores: List<Float>, val diameter: Float) {
         val distance = arrow.distance
 
         //First check if arrow is on target
-        if (distance > this.diameter) {
+        if (distance > (this.diameter/2)) {
             return null
         }
         
