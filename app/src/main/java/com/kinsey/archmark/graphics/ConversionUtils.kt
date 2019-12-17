@@ -4,7 +4,7 @@ import com.kinsey.archmark.model.TargetFace
 import kotlin.math.*
 
 fun pixelToCm(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
-    return Pair(((x.toFloat()/targetView.width)*targetFace.diameter), ((y.toFloat()/targetView.height)*targetFace.diameter))
+    return Pair((((x - targetView.leftPadding)/targetView.paddedWidth)*targetFace.diameter), (((y - targetView.topPadding)/targetView.paddedHeight)*targetFace.diameter))
 }
 
 fun cmCoordinatesToPolar(x: Float, y: Float, targetFace: TargetFace): Pair<Float, Float> {
@@ -23,6 +23,6 @@ fun cmPolarToCoordinates(angle: Float, radius: Float, targetFace: TargetFace): P
 }
 
 fun cmToPixel(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
-    return Pair(((x /targetFace.diameter)*targetView.width), ((y /targetFace.diameter)*targetView.height))
+    return Pair((((x /targetFace.diameter)*targetView.paddedWidth)+targetView.leftPadding), (((y /targetFace.diameter)*targetView.paddedHeight))+targetView.topPadding)
 
 }

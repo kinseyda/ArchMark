@@ -13,6 +13,13 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
     private var ringDrawer: RingDrawer = RingDrawer()
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
+    val topPadding = 16
+    val bottomPadding = 16
+    val leftPadding = 16
+    val rightPadding = 16
+    var paddedHeight = this.height - topPadding - bottomPadding
+    var paddedWidth = this.width - leftPadding - rightPadding
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         if (event.action == MotionEvent.ACTION_UP) {
@@ -31,10 +38,13 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
+        this.paddedHeight = this.height - topPadding - bottomPadding
+        this.paddedWidth = this.width - leftPadding - rightPadding
+
         //First draw rings
         var centerX = this.width/2
         var centerY = this.height/2
-        val radius = min(this.width, this.height)/2
+        val radius = min(this.paddedWidth, this.paddedHeight)/2
         for (ring in this.targetFace.rings) {
             this.ringDrawer.drawRing(canvas, ring, this.targetFace, centerX, centerY, radius)
         }
