@@ -9,4 +9,8 @@ class Arrow(val angle: Float, val distance: Float, val targetFace: TargetFace, v
         return this.targetFace.findRing(this)
     }
 
+    fun findScore(): Float {
+        return this.findRing()?.score ?: 0f
+    }
+
 }

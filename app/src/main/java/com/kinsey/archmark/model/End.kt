@@ -11,6 +11,6 @@ class End {
     /**
      * Return the total score of every arrow shot this end
      */
-    fun endTotal(): Float = arrows.map { it.findRing()?.score ?: 0f }.sum()
+    fun endTotal(): Float = arrows.map { it.findScore() }.sum()
 
 }
