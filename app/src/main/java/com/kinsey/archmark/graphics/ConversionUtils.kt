@@ -1,6 +1,5 @@
 package com.kinsey.archmark.graphics
 
-import androidx.arch.core.util.Function
 import com.kinsey.archmark.model.TargetFace
 import kotlin.math.*
 
