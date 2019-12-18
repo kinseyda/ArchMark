@@ -34,7 +34,7 @@ object RingDrawer {
         canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius + outlineWidth, paint)
 
         RingDrawer.colorMap[ring.score.toInt()]?.let { 
-            paint.color = c
+            paint.color = it
          }
         canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius, paint)
 
