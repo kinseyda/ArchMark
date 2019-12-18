@@ -10,7 +10,6 @@ import com.kinsey.archmark.model.TargetFace
 import java.lang.Integer.min
 
 class TargetView (context: Context, var targetFace: TargetFace, var card: Card): View(context) {
-    private var ringDrawer: RingDrawer = RingDrawer()
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
     val topPadding = 16
@@ -46,7 +45,7 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
         var centerY = this.height/2
         val radius = min(this.paddedWidth, this.paddedHeight)/2
         for (ring in this.targetFace.rings) {
-            this.ringDrawer.drawRing(canvas, ring, this.targetFace, centerX, centerY, radius)
+            RingDrawer.drawRing(canvas, ring, this.targetFace, centerX, centerY, radius)
         }
 
         this.arrowMarkers.clear()
