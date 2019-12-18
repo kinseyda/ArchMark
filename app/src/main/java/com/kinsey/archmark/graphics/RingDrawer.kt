@@ -6,44 +6,36 @@ import android.graphics.Paint
 import com.kinsey.archmark.model.Ring
 import com.kinsey.archmark.model.TargetFace
 
-class RingDrawer {
-    private val paint =
-        Paint().apply {
-            style = Paint.Style.FILL
-        }
+object RingDrawer {
+
+    private val paint = Paint().apply { style = Paint.Style.FILL }
     private var outline: Int = Color.BLACK
     private var outlineWidth: Float = 2f
-    private var colorMap: MutableMap<Int, Int> = mutableMapOf()
-    init {
-        colorMap[1] = Color.WHITE
-        colorMap[2] = Color.WHITE
-        colorMap[3] = Color.BLACK
-        colorMap[4] = Color.BLACK
-        colorMap[5] = Color.BLUE
-        colorMap[6] = Color.BLUE
-        colorMap[7] = Color.RED
-        colorMap[8] = Color.RED
-        colorMap[9] = Color.YELLOW
-        colorMap[10] = Color.YELLOW
-        colorMap[11] = Color.YELLOW
-    }
-    //TODO Make the above style stuff static
+    private var colorMap: MutableMap<Int, Int> = mutableMapOf(
+
+        1 to Color.WHITE
+        2 to Color.WHITE
+        3 to Color.BLACK
+        4 to Color.BLACK
+        5 to Color.BLUE
+        6 to Color.BLUE
+        7 to Color.RED
+        8 to Color.RED
+        9 to Color.YELLOW
+        10 to Color.YELLOW
+        11 to Color.YELLOW
+
+    )
 
     fun drawRing(canvas: Canvas, ring: Ring, targetFace: TargetFace,centerX: Int, centerY: Int, viewRadius: Int) {
         val ringRadius = viewRadius*(ring.radius/(targetFace.diameter/2))
 
-        paint.apply {
-            color = outline
-        }
+        paint.color = outline
         canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius + outlineWidth, paint)
 
-        val c = colorMap[ring.score.toInt()]
-        c?.let {
-            //Only null if score is not in dictionary
-            paint.apply {
-                color = c
-            }
-        }
+        RingDrawer.colorMap[ring.score.toInt()]?.let { 
+            paint.color = c
+         }
         canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius, paint)
 
     }
