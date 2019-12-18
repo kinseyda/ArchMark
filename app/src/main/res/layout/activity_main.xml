@@ -4,24 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16px"
-    android:paddingTop="16px"
-    android:paddingRight="16px"
-    android:paddingBottom="16px"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/targetLayout"
+        android:id="@+id/target_layout"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/finishEnd"
+        app:layout_constraintBottom_toTopOf="@+id/finish_end"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/finishEnd"
+        android:id="@+id/finish_end"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:onClick="onFinishEndClicked"
@@ -29,7 +29,7 @@
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/targetLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/target_layout" />
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -38,10 +38,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/finishEnd">
+        app:layout_constraintTop_toBottomOf="@+id/finish_end">
 
         <TableLayout
-            android:id="@+id/arrowTable"
+            android:id="@+id/arrow_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="*" />

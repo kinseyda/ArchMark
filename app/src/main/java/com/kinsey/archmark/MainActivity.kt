@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         this.targetView = TargetView(this, this.targetFace, this.card)
-        this.arrowTable = findViewById(R.id.arrowTable)
+        this.arrowTable = findViewById(R.id.arrow_table)
         addArrowTableMargin(3)
 
-        val constraintLayout: ConstraintLayout = findViewById(R.id.targetLayout)
+        val constraintLayout: ConstraintLayout = findViewById(R.id.target_layout)
         constraintLayout.addView(this.targetView)
 
     }
