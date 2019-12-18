@@ -5,6 +5,7 @@ class End {
 
     fun addArrow(arrow: Arrow) {
         this.arrows.add(arrow)
+        this.arrows.sortBy { it.distance }
     }
 
     /**
