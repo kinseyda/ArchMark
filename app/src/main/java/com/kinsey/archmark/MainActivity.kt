@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         var row = TableRow(this)
         row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
 
+
+        row.addView(TextView(this).apply { text = getString(R.string.end) })
+
         for (i in 1..arrows) {
             row.addView(TextView(this).apply{text = getString(R.string.arrowNum, i)})
         }
@@ -53,6 +56,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onFinishEndClicked(v: View) {
         var row = TableRow(this)
+
+        row.addView(TextView(this).apply { text = getString(R.string.endNum, this@MainActivity.card.ends.size) })
 
         for (arrow in card.currentEnd().arrows) {
             row.addView(TextView(this).apply{
