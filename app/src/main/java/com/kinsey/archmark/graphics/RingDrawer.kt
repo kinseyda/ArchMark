@@ -13,16 +13,16 @@ object RingDrawer {
     private var outlineWidth: Float = 2f
     private var colorMap: MutableMap<Int, Int> = mutableMapOf(
 
-        1 to Color.WHITE
-        2 to Color.WHITE
-        3 to Color.BLACK
-        4 to Color.BLACK
-        5 to Color.BLUE
-        6 to Color.BLUE
-        7 to Color.RED
-        8 to Color.RED
-        9 to Color.YELLOW
-        10 to Color.YELLOW
+        1 to Color.WHITE,
+        2 to Color.WHITE,
+        3 to Color.BLACK,
+        4 to Color.BLACK,
+        5 to Color.BLUE,
+        6 to Color.BLUE,
+        7 to Color.RED,
+        8 to Color.RED,
+        9 to Color.YELLOW,
+        10 to Color.YELLOW,
         11 to Color.YELLOW
 
     )
