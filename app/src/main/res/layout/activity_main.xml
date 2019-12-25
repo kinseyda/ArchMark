@@ -10,50 +10,23 @@
     android:paddingBottom="16dp"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/target_layout"
-        android:layout_width="wrap_content"
+    <fragment
+        android:id="@+id/targetFragment"
+        android:name="com.kinsey.archmark.graphics.TargetFragment"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/finish_end"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tableFragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/finish_end"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:onClick="onFinishEndClicked"
-        android:text="@string/finishEndButton"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/target_layout" />
-
-    <ScrollView
-        android:id="@+id/scrollView"
+    <fragment
+        android:id="@+id/tableFragment"
+        android:name="com.kinsey.archmark.graphics.TableFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/finish_end">
-
-        <TableLayout
-            android:id="@+id/arrow_table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="*" />
-    </ScrollView>
-
-    <!-- <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" /> -->
-
+        app:layout_constraintStart_toEndOf="@+id/targetFragment"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
