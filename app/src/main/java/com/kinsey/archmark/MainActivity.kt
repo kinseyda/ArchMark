@@ -15,12 +15,12 @@ import com.kinsey.archmark.model.TargetFace
 
 class MainActivity : AppCompatActivity() {
     //Model
-    var targetFace:TargetFace = TargetFace(listOf<Float>(20f, 18f, 16f, 14f, 12f, 10f, 8f, 6f, 4f, 2f, 1f), listOf<Float>(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 11f), 40f)
-    var card: Card = Card()
+    private var targetFace:TargetFace = TargetFace(listOf<Float>(20f, 18f, 16f, 14f, 12f, 10f, 8f, 6f, 4f, 2f, 1f), listOf<Float>(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 11f), 40f)
+    private var card: Card = Card()
 
     //Fragments
-    var targetFragment = TargetFragment(this.targetFace, this.card)
-    var tableFragment = TableFragment(this.card)
+    private var targetFragment = TargetFragment(this.targetFace, this.card)
+    private var tableFragment = TableFragment(this.card)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
