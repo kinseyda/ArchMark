@@ -13,9 +13,9 @@ import com.kinsey.archmark.model.TargetFace
 
 class TargetFragment(private val targetFace: TargetFace, private val card: Card): Fragment() {
 
-    lateinit var targetView: TargetView
+    private lateinit var targetView: TargetView
 
-    lateinit var parentContext: Context
+    private lateinit var parentContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +27,7 @@ class TargetFragment(private val targetFace: TargetFace, private val card: Card)
         return parentView
     }
 
-    fun initView(parentView: View) {
+    private fun initView(parentView: View) {
         this.targetView = TargetView(this.parentContext, this.targetFace, this.card)
         val constraintLayout: ConstraintLayout = parentView.findViewById(R.id.target_holder)
         constraintLayout.addView(targetView)

@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment
 import com.kinsey.archmark.R
 import com.kinsey.archmark.model.Card
 
-class TableFragment(val card: Card): Fragment() {
+class TableFragment(private val card: Card): Fragment() {
 
-    lateinit var arrowTable: TableLayout
-    lateinit var parentContext: Context
+    private lateinit var arrowTable: TableLayout
+    private lateinit var parentContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,12 +28,12 @@ class TableFragment(val card: Card): Fragment() {
         return parentView
     }
 
-    fun initView(parentView: View) {
+    private fun initView(parentView: View) {
         this.arrowTable = parentView.findViewById(R.id.arrow_table)
         addArrowTableMargin(3)
     }
 
-    fun addArrowTableMargin(arrows: Int) {
+    private fun addArrowTableMargin(arrows: Int) {
         var row = TableRow(this.activity!!)
         row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
 
