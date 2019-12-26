@@ -13,7 +13,7 @@ import com.kinsey.archmark.model.TargetFace
 
 class TargetFragment(private val targetFace: TargetFace, private val card: Card): Fragment() {
 
-    private lateinit var targetView: TargetView
+    lateinit var targetView: TargetView
 
     lateinit var parentContext: Context
 
