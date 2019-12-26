@@ -15,7 +15,7 @@ import com.kinsey.archmark.model.Card
 class TableFragment(private val card: Card): Fragment() {
 
     private lateinit var arrowTable: TableLayout
-    private lateinit var parentContext: Context
+    lateinit var parentContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater,

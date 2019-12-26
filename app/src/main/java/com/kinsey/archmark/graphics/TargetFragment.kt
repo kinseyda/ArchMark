@@ -15,7 +15,7 @@ class TargetFragment(private val targetFace: TargetFace, private val card: Card)
 
     private lateinit var targetView: TargetView
 
-    private lateinit var parentContext: Context
+    lateinit var parentContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater,
