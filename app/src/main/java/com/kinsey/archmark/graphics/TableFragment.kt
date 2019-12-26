@@ -61,17 +61,17 @@ class TableFragment(private val card: Card): Fragment() {
 
         for (arrow in end.arrows) {
             row.addView(TextView(this.activity!!).apply{
-                text = (arrow.findScore()).toString()
+                text = (arrow.findScore()).toInt().toString()
             })
         }
 
         //Add end total
         row.addView(TextView(this.activity!!).apply {
-            text = end.endTotal().toString()
+            text = end.endTotal().toInt().toString()
         })
         //Add cumulative total
         row.addView((TextView(this.activity!!).apply {
-            text = card.cumulativeScore(index).toString()
+            text = card.cumulativeScore(index).toInt().toString()
         }))
 
         row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
