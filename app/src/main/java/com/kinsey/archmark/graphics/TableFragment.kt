@@ -59,9 +59,9 @@ class TableFragment(private val card: Card): Fragment() {
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1) })
 
-        for (arrow in end.arrows) {
+        for (i in 0 until this.card.getMostArrows()) {
             row.addView(TextView(this.activity!!).apply{
-                text = (arrow.findScore()).toInt().toString()
+                text = end.arrows.getOrNull(i)?.findScore()?.toInt()?.toString() ?: ""
             })
         }
 
