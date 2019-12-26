@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.kinsey.archmark.R
 import com.kinsey.archmark.model.Card
+import com.kinsey.archmark.model.End
+import java.util.Collections.max
 
 class TableFragment(private val card: Card): Fragment() {
 
@@ -51,13 +54,12 @@ class TableFragment(private val card: Card): Fragment() {
         this.arrowTable.addView(row)
     }
 
-    fun updateEnd(targetView: TargetView) {
-
+    private fun addEnd(end: End, index: Int) {
         val row = TableRow(this.activity!!)
 
-        row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, card.ends.size) })
+        row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1) })
 
-        for (arrow in card.currentEnd().arrows) {
+        for (arrow in end.arrows) {
             row.addView(TextView(this.activity!!).apply{
                 text = (arrow.findScore()).toString()
             })
@@ -65,16 +67,26 @@ class TableFragment(private val card: Card): Fragment() {
 
         //Add end total
         row.addView(TextView(this.activity!!).apply {
-            text = card.currentEnd().endTotal().toString()
+            text = end.endTotal().toString()
         })
         //Add cumulative total
         row.addView((TextView(this.activity!!).apply {
-            text = card.cumulativeScore().toString()
+            text = card.cumulativeScore(index).toString()
         }))
 
         row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
 
         this.arrowTable.addView(row)
+    }
+
+    fun updateEnd(targetView: TargetView) {
+        this.arrowTable.removeAllViews()
+
+        addArrowTableMargin(this.card.getMostArrows())
+
+        for (i in 0 until this.card.ends.size) {
+            addEnd(this.card.ends[i], i)
+        }
 
         this.card.newEnd()
         targetView.invalidate()
