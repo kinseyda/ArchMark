@@ -40,6 +40,14 @@ class MainActivity : AppCompatActivity() {
     fun onFinishEndClicked(v: View) {
         tableFragment.updateEnd(this.targetFragment.targetView)
     }
+
+    fun onUndoClicked(v: View) {
+        val lst = card.currentEnd().arrows
+        if (lst.size > 0) {
+            this.card.currentEnd().arrows.removeAt(lst.size - 1)
+            targetFragment.targetView.invalidate()
+        }
+    }
 }
 
 

@@ -31,6 +31,7 @@
         android:id="@+id/undo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:onClick="onUndoClicked"
         android:text="@string/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
