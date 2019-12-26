@@ -2,6 +2,7 @@
     <string name="app_name">ArchMark</string>
 
     <string name="finishEndButton">Finish End</string>
+    <string name="undoButton">Undo</string>
 
     <string name="arrowNum">%1$d</string>
     <string name="end">    </string>
