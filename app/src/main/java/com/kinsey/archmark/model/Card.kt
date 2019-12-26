@@ -4,6 +4,7 @@ import java.util.*
 
 class Card {
     var ends: MutableList<End> = mutableListOf<End>()
+    val time = Calendar.getInstance()
     init{
         newEnd()
     }
