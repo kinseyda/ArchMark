@@ -2,85 +2,64 @@ package com.kinsey.archmark
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.kinsey.archmark.graphics.TargetView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.kinsey.archmark.graphics.TableFragment
+import com.kinsey.archmark.graphics.TargetFragment
 import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.TargetFace
 
 
 class MainActivity : AppCompatActivity() {
     //Model
-    var targetFace:TargetFace = TargetFace(listOf<Float>(20f, 18f, 16f, 14f, 12f, 10f, 8f, 6f, 4f, 2f, 1f), listOf<Float>(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 11f), 40f)
-    var card: Card = Card()
+    private var targetFace:TargetFace = TargetFace(listOf(20f, 18f, 16f, 14f, 12f, 10f, 8f, 6f, 4f, 2f, 1f), listOf(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 11f), 40f)
+    private var card: Card = Card()
 
-    //Components
-    var targetView: TargetView? = null
-    var arrowTable: TableLayout? = null
+    //Fragments
+    private var targetFragment = TargetFragment(this.targetFace, this.card)
+    private var tableFragment = TableFragment(this.card)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.targetView = TargetView(this, this.targetFace, this.card)
-        this.arrowTable = findViewById(R.id.arrow_table)
-        addArrowTableMargin(3)
+        val viewPager: ViewPager = findViewById(R.id.viewPager)
+        viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
 
-        val constraintLayout: ConstraintLayout = findViewById(R.id.target_layout)
-        constraintLayout.addView(this.targetView)
+
+        targetFragment.parentContext = this
+        tableFragment.parentContext = this
 
     }
 
-
-    private fun addArrowTableMargin(arrows: Int) {
-        var row = TableRow(this)
-        row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
-
-
-        row.addView(TextView(this).apply { text = getString(R.string.end) })
-
-        for (i in 1..arrows) {
-            row.addView(TextView(this).apply{text = getString(R.string.arrowNum, i)})
-        }
-
-        row.addView(TextView(this).apply{text = getString(R.string.endTotal)})
-
-        row.addView(TextView(this).apply{text = getString(R.string.cumulativeTotal)})
-
-        this.arrowTable?.addView(row)
-    }
 
     fun onFinishEndClicked(v: View) {
-        var row = TableRow(this)
+        tableFragment.updateEnd(this.targetFragment.targetView)
+    }
+}
 
-        row.addView(TextView(this).apply { text = getString(R.string.endNum, this@MainActivity.card.ends.size) })
 
-        for (arrow in card.currentEnd().arrows) {
-            row.addView(TextView(this).apply{
-                text = (arrow.findScore()).toString()
-            })
+private class MainPagerAdapter(fm: FragmentManager, private val targetFragment: TargetFragment, private val tableFragment: TableFragment) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+    override fun getCount(): Int  = 2
+
+
+    override fun getItem(i: Int): Fragment {
+        lateinit var fragment: Fragment
+        if (i == 0) {
+            fragment = targetFragment
         }
-
-        //Add end total
-        row.addView(TextView(this).apply {
-            text = card.currentEnd().endTotal().toString()
-        })
-        //Add cumulative total
-        row.addView((TextView(this).apply {
-            text = card.cumulativeScore().toString()
-        }))
-
-        row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
-
-        this.arrowTable?.addView(row)
-
-        this.card.newEnd()
-        this.targetView?.invalidate()
+        else {
+            fragment = tableFragment
+        }
+        return fragment
     }
 
-
+    override fun getPageTitle(position: Int): CharSequence {
+        return "OBJECT ${(position + 1)}"
+    }
 }
