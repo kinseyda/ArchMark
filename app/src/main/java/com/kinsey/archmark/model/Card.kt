@@ -10,7 +10,7 @@ class Card {
 
     fun cumulativeScore(): Float = cumulativeScore(ends.size-1)
 
-    fun cumulativeScore(upTo: Int): Float = ends.subList(0, upTo).map { it.endTotal() }.sum()
+    fun cumulativeScore(upTo: Int): Float = ends.subList(0, upTo+1).map { it.endTotal() }.sum()
     
     fun currentEnd(): End {
         return this.ends.last()
