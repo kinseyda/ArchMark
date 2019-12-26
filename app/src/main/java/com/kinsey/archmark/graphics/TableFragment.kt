@@ -34,7 +34,7 @@ class TableFragment(private val card: Card): Fragment() {
     }
 
     private fun addArrowTableMargin(arrows: Int) {
-        var row = TableRow(this.activity!!)
+        val row = TableRow(this.activity!!)
         row.layoutParams = TableRow.LayoutParams(1, TableRow.LayoutParams.MATCH_PARENT)
 
 
@@ -53,7 +53,7 @@ class TableFragment(private val card: Card): Fragment() {
 
     fun updateEnd(targetView: TargetView) {
 
-        var row = TableRow(this.activity!!)
+        val row = TableRow(this.activity!!)
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, card.ends.size) })
 
