@@ -2,22 +2,15 @@ package com.kinsey.archmark
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TableLayout
-import android.widget.TableRow
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.viewpager.widget.ViewPager
-import com.kinsey.archmark.graphics.TargetView
-import com.kinsey.archmark.model.Card
-import com.kinsey.archmark.model.TargetFace
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.kinsey.archmark.graphics.TableFragment
 import com.kinsey.archmark.graphics.TargetFragment
+import com.kinsey.archmark.model.Card
+import com.kinsey.archmark.model.TargetFace
 
 
 class MainActivity : AppCompatActivity() {
