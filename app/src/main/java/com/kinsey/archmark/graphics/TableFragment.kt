@@ -60,8 +60,9 @@ class TableFragment(private val card: Card): Fragment() {
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1) })
 
         for (i in 0 until this.card.getMostArrows()) {
+            val arrowLst = end.arrows.sortedBy { it.distance }
             row.addView(TextView(this.activity!!).apply{
-                text = end.arrows.getOrNull(i)?.findScore()?.toInt()?.toString() ?: ""
+                text = arrowLst.getOrNull(i)?.findScore()?.toInt()?.toString() ?: ""
             })
         }
 
