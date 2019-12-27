@@ -9,8 +9,10 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.kinsey.archmark.graphics.TableFragment
 import com.kinsey.archmark.graphics.TargetFragment
+import com.kinsey.archmark.io.CardSaver
 import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.TargetFace
+import java.io.File
 
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +50,18 @@ class MainActivity : AppCompatActivity() {
             targetFragment.targetView.invalidate()
         }
     }
+
+    fun onSaveClicked(v: View) {        val file = File(this.filesDir.toString() + "/Card" + ".txt")
+        println("Created:" + file.createNewFile())
+        CardSaver.saveCard(this.card, file)
+        println("Files in dir   : ")
+        for (i in this.fileList()) {
+            println(i)
+        }
+        println("Contents of Card.txt:")
+        File(this.filesDir.toString() + "/Card.txt").forEachLine { println(it) }
+    }
+
 }
 
 

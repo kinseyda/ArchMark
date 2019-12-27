@@ -3,6 +3,7 @@
 
     <string name="finishEndButton">Finish End</string>
     <string name="undoButton">Undo</string>
+    <string name="saveButton">Save</string>
 
     <string name="arrowNum">%1$d</string>
     <string name="end">    </string>
