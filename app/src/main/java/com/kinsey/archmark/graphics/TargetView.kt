@@ -24,7 +24,7 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
         if (event.action == MotionEvent.ACTION_UP) {
             val cm = ConversionUtils.pixelToCm(event.x, event.y, this, targetFace)
             val polar = ConversionUtils.cmCoordinatesToPolar(cm.first, cm.second, targetFace)
-            val arrow = Arrow(polar.first, polar.second, targetFace)
+            val arrow = Arrow(polar.first, polar.second, this.card)
             this.card.addArrow(arrow)
         }
 
