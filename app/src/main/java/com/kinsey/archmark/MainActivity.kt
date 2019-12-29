@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onClearClicked(v: View) {
         println("Clear!")
+        card.clear()
+        tableFragment.clear()
     }
 
 }

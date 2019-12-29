@@ -25,7 +25,14 @@ class Card {
         currentEnd().addArrow(arrow)
     }
 
+    fun hasArrows() = ends.size > 0
+
     fun getMostArrows(): Int {
         return Collections.max(ends.map { it.arrows.size })
     }
+
+    fun clear() {
+        ends.clear()
+    }
+
 }
