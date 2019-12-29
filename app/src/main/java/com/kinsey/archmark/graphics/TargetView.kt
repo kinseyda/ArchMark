@@ -49,6 +49,7 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
         }
 
         this.arrowMarkers.clear()
+
         for (arrow in this.card.currentEnd().arrows) {
             this.arrowMarkers.add(ArrowMarker(arrow, this))
         }

@@ -60,9 +60,6 @@ class TableFragment(private val card: Card): Fragment() {
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1); setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f) })
 
-        if (!card.hasArrows())
-            return
-
         for (i in 0 until this.card.getMostArrows()) {
             val arrowLst = end.arrows.sortedBy { it.distance }
             row.addView(TextView(this.activity!!).apply{
@@ -90,10 +87,7 @@ class TableFragment(private val card: Card): Fragment() {
     fun updateEnd(targetView: TargetView) {
         this.arrowTable.removeAllViews()
 
-        if (card.hasArrows())
-            addArrowTableMargin(this.card.getMostArrows())
-        else
-            addArrowTableMargin(3)
+        addArrowTableMargin(this.card.getMostArrows())
 
         for (i in 0 until this.card.ends.size) {
             addEnd(this.card.ends[i], i)
