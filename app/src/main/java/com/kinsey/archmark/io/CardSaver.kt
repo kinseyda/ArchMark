@@ -25,7 +25,8 @@ object CardSaver {
 				|	Head:
 				|		Time: %s
 				|		Total: %f
-				|		Arrows: %d
+                |		Arrows: %d
+                |
 				""".trimMargin(),
 				card.time, card.cumulativeScore(), card.allArrows().size)
 
@@ -45,6 +46,7 @@ object CardSaver {
             |				angle: %f
             |				distance: %f
             |				forScore: %b
+            |
             """.trimMargin(),
             arrow.angle, arrow.distance, arrow.forScore)
 
