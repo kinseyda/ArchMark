@@ -9,4 +9,7 @@
     <string name="endNum">%1$d</string>
     <string name="endTotal">Total</string>
     <string name="cumulativeTotal">Cumul.</string>
+
+    <string name="scoreTitle">Score</string>
+
 </resources>
