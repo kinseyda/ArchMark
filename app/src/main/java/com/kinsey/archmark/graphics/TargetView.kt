@@ -12,10 +12,10 @@ import java.lang.Integer.min
 class TargetView (context: Context, var targetFace: TargetFace, var card: Card): View(context) {
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
-    val topPadding = 16
-    val bottomPadding = 16
-    val leftPadding = 16
-    val rightPadding = 16
+    val topPadding = 80
+    val bottomPadding = 80
+    val leftPadding = 80
+    val rightPadding = 80
     var paddedHeight = this.height - topPadding - bottomPadding
     var paddedWidth = this.width - leftPadding - rightPadding
 
