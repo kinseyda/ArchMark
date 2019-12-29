@@ -16,48 +16,36 @@ import java.io.File
  */
 object CardSaver {
 
-    fun saveCard(card: Card, file: File) {
-        var cardString = "Card:\n"
+	fun saveCard(card: Card, file: File) =
+		file.writeText("Card:\n" + headString(card) + bodyString(card))
 
-        cardString += headString(card)
-        cardString += bodyString(card)
+	private fun headString(card: Card): String =
+			String.format(
+				"""
+				|	Head:
+				|		Time: %s
+				|		Total: %f
+				|		Arrows: %d
+				""".trimMargin(),
+				card.time, card.cumulativeScore(), card.allArrows().size)
 
-        file.writeText(cardString)
-    }
+    private fun bodyString(card: Card): String =
+            "\tBody:\n" + 
+            card.ends.filter { it.arrows.size > 0 }
+            .map(::endString).joinToString()
 
-    private fun headString(card: Card): String {
-        var s = "\tHead:\n"
-        s += "\t\tTime: " + card.time.toString() + "\n"
-        s += "\t\tTotal: " + card.cumulativeScore() + "\n"
-        s += "\t\tArrows: " + card.allArrows().size + "\n"
-        return s
-    }
+    private fun endString(end: End): String =
+            "\t\tEnd:\n" +
+            end.arrows.map(::arrowString).joinToString()
 
-    private fun bodyString(card: Card): String {
-        var s = "\tBody:\n"
-        for (end in card.ends) {
-            if (end.arrows.size == 0) {
-                continue
-            }
-            s += endString(end)
-        }
-        return s
-    }
-
-    private fun endString(end: End): String {
-        var s = "\t\tEnd:\n"
-        for (arrow in end.arrows) {
-            s += arrowString(arrow)
-        }
-        return s
-    }
-
-    private fun arrowString(arrow: Arrow): String {
-        var s = "\t\t\tArrow:\n"
-        s += "\t\t\t\tangle: " + arrow.angle + "\n"
-        s += "\t\t\t\tdistance: " + arrow.distance + "\n"
-        s += "\t\t\t\tforScore: " + arrow.forScore + "\n"
-        return s
-    }
+    private fun arrowString(arrow: Arrow): String =
+            String.format(
+            """
+            |			Arrow:
+            |				angle: %f
+            |				distance: %f
+            |				forScore: %b
+            """.trimMargin(),
+            arrow.angle, arrow.distance, arrow.forScore)
 
 }
