@@ -18,8 +18,8 @@
 
     <Button
         android:id="@+id/finish_end"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
         android:onClick="onFinishEndClicked"
         android:text="@string/finishEndButton"
         app:layout_constraintBottom_toTopOf="@+id/undo"
@@ -29,8 +29,8 @@
 
     <Button
         android:id="@+id/undo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
         android:onClick="onUndoClicked"
         android:text="@string/undoButton"
         app:layout_constraintEnd_toEndOf="parent"
