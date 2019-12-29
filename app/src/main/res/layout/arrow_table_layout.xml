@@ -4,6 +4,7 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0000FF"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:paddingTop="30dp"
@@ -14,21 +15,31 @@
         android:layout_height="wrap_content"
         android:text="@string/scoreTitle"
         android:gravity="center"
-        android:textSize="50sp"
-        />
+        android:textSize="50sp" />
     
 
     <ScrollView
         android:id="@+id/scrollView"
+        android:background="#FF0000"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <TableLayout
             android:id="@+id/arrow_table"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
+            android:layout_marginTop="30dp"
+            android:minHeight="150dp"
             android:stretchColumns="*" />
     </ScrollView>
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClearClicked"
+        android:text="@string/clearButton" />
+
 </LinearLayout>
