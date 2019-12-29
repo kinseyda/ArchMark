@@ -4,7 +4,6 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0000FF"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:paddingTop="30dp"
@@ -20,7 +19,6 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:background="#FF0000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
