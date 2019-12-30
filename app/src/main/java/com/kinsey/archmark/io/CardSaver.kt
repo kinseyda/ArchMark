@@ -17,35 +17,35 @@ import java.io.File
 object CardSaver {
 
 	fun saveCard(card: Card, file: File) =
-		file.writeText("Card:\n" + headString(card) + bodyString(card))
+		file.writeText(headString(card) + bodyString(card))
 
 	private fun headString(card: Card): String =
 			String.format(
 				"""
-				|	Head:
-				|		Time: %s
-				|		Total: %f
-				|		Arrows: %d
+				|Head:
+				|	Time: %s
+				|	Total: %f
+				|	Arrows: %d
 				|
 				""".trimMargin(),
 				card.time, card.cumulativeScore(), card.allArrows().size)
 
     private fun bodyString(card: Card): String =
-            "\tBody:\n" + 
+            "Body:\n" +
             card.ends.filter { it.arrows.size > 0 }
             .map(::endString).joinToString()
 
     private fun endString(end: End): String =
-            "\t\tEnd:\n" +
-            end.arrows.map(::arrowString).joinToString()
+            "\tEnd:\n" +
+            end.arrows.map(::arrowString).joinToString("")
 
     private fun arrowString(arrow: Arrow): String =
             String.format(
             """
-            |			Arrow:
-            |				angle: %f
-            |				distance: %f
-            |				forScore: %b
+            |		Arrow:
+            |			angle: %f
+            |			distance: %f
+            |			forScore: %b
             |
             """.trimMargin(),
             arrow.angle, arrow.distance, arrow.forScore)
