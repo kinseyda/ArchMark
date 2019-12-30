@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val viewPager: ViewPager = findViewById(R.id.viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
 
+        
 
         targetFragment.parentContext = this
         tableFragment.parentContext = this

@@ -5,8 +5,11 @@
     <string name="undoButton">Undo</string>
 
     <string name="arrowNum">%1$d</string>
-    <string name="end">    </string>
+    <string name="end">Round</string>
     <string name="endNum">%1$d</string>
     <string name="endTotal">Total</string>
     <string name="cumulativeTotal">Cumul.</string>
+
+    <string name="scoreTitle">Score</string>
+
 </resources>
