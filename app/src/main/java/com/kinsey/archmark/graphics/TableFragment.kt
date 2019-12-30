@@ -101,9 +101,4 @@ class TableFragment(private val card: Card): Fragment(), Observer {
 
     }
 
-    fun clear() {
-        arrowTable.removeAllViews()
-        addArrowTableMargin(3)
-    }
-
 }
