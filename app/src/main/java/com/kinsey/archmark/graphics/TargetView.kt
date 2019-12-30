@@ -27,9 +27,7 @@ class TargetView (context: Context, var targetFace: TargetFace, var card: Card):
             val arrow = Arrow(polar.first, polar.second, this.card)
             this.card.addArrow(arrow)
         }
-
-        //View is now "out of date" so we have to tell it to draw again
-        invalidate()
+        
         return true
     }
 
