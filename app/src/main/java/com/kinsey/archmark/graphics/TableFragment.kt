@@ -14,9 +14,10 @@ import androidx.fragment.app.Fragment
 import com.kinsey.archmark.R
 import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.End
+import java.util.*
 import java.util.Collections.max
 
-class TableFragment(private val card: Card): Fragment() {
+class TableFragment(private val card: Card): Fragment(), Observer {
 
     private lateinit var arrowTable: TableLayout
     lateinit var parentContext: Context
@@ -84,17 +85,20 @@ class TableFragment(private val card: Card): Fragment() {
         this.arrowTable.addView(row)
     }
 
-    fun updateEnd(targetView: TargetView) {
+
+    override fun update(o: Observable?, arg: Any?) {
+        updateEnd()
+    }
+
+    private fun updateEnd() {
         this.arrowTable.removeAllViews()
 
         addArrowTableMargin(this.card.getMostArrows())
 
-        for (i in 0 until this.card.ends.size) {
+        for (i in 0 until this.card.ends.size-1) {
             addEnd(this.card.ends[i], i)
         }
 
-        this.card.newEnd()
-        targetView.invalidate()
     }
 
     fun clear() {

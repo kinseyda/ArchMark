@@ -30,7 +30,8 @@ class MainActivity : AppCompatActivity() {
         val viewPager: ViewPager = findViewById(R.id.viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
 
-        
+        this.card.addObserver(this.targetFragment)
+        this.card.addObserver(this.tableFragment)
 
         targetFragment.parentContext = this
         tableFragment.parentContext = this
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun onFinishEndClicked(v: View) {
-        tableFragment.updateEnd(this.targetFragment.targetView)
+        this.card.newEnd()
     }
 
     fun onUndoClicked(v: View) {
