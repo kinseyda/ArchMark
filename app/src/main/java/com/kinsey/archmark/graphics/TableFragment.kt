@@ -35,7 +35,6 @@ class TableFragment(private val card: Card): Fragment(), Observer {
 
     private fun initView(parentView: View) {
         this.arrowTable = parentView.findViewById(R.id.arrow_table)
-        addArrowTableMargin(3)
     }
 
     private fun addArrowTableMargin(arrows: Int) {
@@ -93,7 +92,14 @@ class TableFragment(private val card: Card): Fragment(), Observer {
     private fun updateEnd() {
         this.arrowTable.removeAllViews()
 
-        addArrowTableMargin(this.card.getMostArrows())
+        val size = this.card.getMostArrows()
+        if (size == 0) {
+            //Default
+            addArrowTableMargin(3)
+        }
+        else {
+            addArrowTableMargin(size)
+        }
 
         for (i in 0 until this.card.ends.size-1) {
             addEnd(this.card.ends[i], i)
