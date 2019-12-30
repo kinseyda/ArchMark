@@ -43,11 +43,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onUndoClicked(v: View) {
-        val lst = card.currentEnd().arrows
-        if (lst.size > 0) {
-            this.card.currentEnd().arrows.removeAt(lst.size - 1)
-            targetFragment.targetView.invalidate()
-        }
+        this.card.removeLastArrow()
+
     }
 
     fun onClearClicked(v: View) {
