@@ -96,4 +96,10 @@ class TableFragment(private val card: Card): Fragment() {
         this.card.newEnd()
         targetView.invalidate()
     }
+
+    fun clear() {
+        arrowTable.removeAllViews()
+        addArrowTableMargin(3)
+    }
+
 }

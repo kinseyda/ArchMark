@@ -49,6 +49,13 @@ class MainActivity : AppCompatActivity() {
             targetFragment.targetView.invalidate()
         }
     }
+
+    fun onClearClicked(v: View) {
+        println("Clear!")
+        card.clear()
+        tableFragment.clear()
+    }
+
 }
 
 

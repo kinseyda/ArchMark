@@ -12,4 +12,6 @@
 
     <string name="scoreTitle">Score</string>
 
+    <string name="clearButton">Clear</string>
+
 </resources>
