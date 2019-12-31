@@ -15,7 +15,7 @@ import com.kinsey.archmark.model.TargetFace
 
 class MainActivity : AppCompatActivity() {
     //Model
-    private var card: Card = Card()
+    var card: Card = Card()
     private var targetFace:TargetFace = card.targetFace
 
     //Fragments
