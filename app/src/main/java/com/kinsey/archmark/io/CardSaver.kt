@@ -34,7 +34,7 @@ object CardSaver {
     private fun bodyString(card: Card): String =
             "Body:\n" +
             card.ends.filter { it.arrows.size > 0 }
-            .map(::endString).joinToString()
+            .map(::endString).joinToString("")
 
     private fun endString(end: End): String =
             "\tEnd:\n" +
