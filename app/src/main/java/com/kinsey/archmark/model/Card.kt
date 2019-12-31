@@ -27,7 +27,7 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
     }
 
     fun newEnd() {
-        if (this.currentEnd().arrows.isNotEmpty()) {
+        if (this.ends.size == 0 || this.currentEnd().arrows.isNotEmpty()) {
             this.ends.add(End())
             this.change()
         }
