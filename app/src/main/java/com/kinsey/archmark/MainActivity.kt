@@ -56,21 +56,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClearClicked(v: View) {
-        println("Clear!")
         card.clear()
     }
 
 
     fun onSaveClicked(v: View) {
         val file = File(this.filesDir.toString() + "/Card" + ".txt")
-        println("Created:" + file.createNewFile())
+        file.createNewFile()
         CardSaver.saveCard(this.card, file)
-        println("Files in dir   : ")
-        for (i in this.fileList()) {
-            println(i)
-        }
-        println("Contents of Card.txt:")
-        File(this.filesDir.toString() + "/Card.txt").forEachLine { println(it) }
     }
 
     fun onLoadClicked(v: View) {

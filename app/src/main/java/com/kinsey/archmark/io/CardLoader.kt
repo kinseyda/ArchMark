@@ -56,8 +56,7 @@ object CardLoader {
         file.forEachLine lineLoop@{
             val line = it.replace(Regex("\\s"), "")
 
-
-            println(String.format("Line %d, State %s: %s", lineNum, state.toString(), line))
+//            println(String.format("Line %d, State %s: %s", lineNum, state.toString(), line))
 
             if (line.isEmpty()) {
                 return@lineLoop
@@ -132,7 +131,6 @@ object CardLoader {
             lineNum++
         }
 
-        println("Card loaded!")
         return card!!
     }
 
