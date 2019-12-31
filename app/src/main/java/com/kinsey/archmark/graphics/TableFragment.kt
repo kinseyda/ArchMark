@@ -102,7 +102,7 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
             addArrowTableMargin(size)
         }
 
-        for (i in 0 until this.mainActivity.card.ends.size-1) {
+        for (i in 0 until this.mainActivity.card.ends.size) {
             addEnd(this.mainActivity.card.ends[i], i)
         }
 
