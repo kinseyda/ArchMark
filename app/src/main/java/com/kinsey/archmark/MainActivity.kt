@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         try {
             this.card = CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt"))
             initCard()
+            this.card.change()
         }
         catch(e: IOException) {
             println(e.message)
