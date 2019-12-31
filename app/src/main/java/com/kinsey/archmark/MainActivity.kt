@@ -34,12 +34,16 @@ class MainActivity : AppCompatActivity() {
         val viewPager: ViewPager = findViewById(R.id.viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
 
-        this.card.addObserver(this.targetFragment)
-        this.card.addObserver(this.tableFragment)
+        initCard()
 
         targetFragment.parentContext = this
         tableFragment.parentContext = this
 
+    }
+
+    private fun initCard() {
+        this.card.addObserver(this.targetFragment)
+        this.card.addObserver(this.tableFragment)
     }
 
 
@@ -72,7 +76,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onLoadClicked(v: View) {
         try {
-            CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt"))
+            this.card = CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt"))
+            initCard()
         }
         catch(e: IOException) {
             println(e.message)
