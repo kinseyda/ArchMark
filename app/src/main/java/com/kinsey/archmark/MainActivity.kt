@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     var card: Card = Card()
 
     //Fragments
-    private var targetFragment = TargetFragment(this.targetFace, this.card)
-    private var tableFragment = TableFragment(this.card)
+    private var targetFragment = TargetFragment( this)
+    private var tableFragment = TableFragment(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

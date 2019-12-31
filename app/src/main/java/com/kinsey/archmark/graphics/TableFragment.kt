@@ -11,13 +11,14 @@ import android.widget.TextView
 import android.util.TypedValue;
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import com.kinsey.archmark.MainActivity
 import com.kinsey.archmark.R
 import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.End
 import java.util.*
 import java.util.Collections.max
 
-class TableFragment(private val card: Card): Fragment(), Observer {
+class TableFragment(private val mainActivity: MainActivity): Fragment(), Observer {
 
     private lateinit var arrowTable: TableLayout
     lateinit var parentContext: Context
@@ -60,7 +61,7 @@ class TableFragment(private val card: Card): Fragment(), Observer {
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1); setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f) })
 
-        for (i in 0 until this.card.getMostArrows()) {
+        for (i in 0 until this.mainActivity.card.getMostArrows()) {
             val arrowLst = end.arrows.sortedBy { it.distance }
             row.addView(TextView(this.activity!!).apply{
                 text = arrowLst.getOrNull(i)?.findScore()?.toInt()?.toString() ?: ""
@@ -75,7 +76,7 @@ class TableFragment(private val card: Card): Fragment(), Observer {
         })
         //Add cumulative total
         row.addView((TextView(this.activity!!).apply {
-            text = card.cumulativeScore(index).toInt().toString()
+            text = mainActivity.card.cumulativeScore(index).toInt().toString()
             setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f)
         }))
 
@@ -92,7 +93,7 @@ class TableFragment(private val card: Card): Fragment(), Observer {
     private fun updateEnd() {
         this.arrowTable.removeAllViews()
 
-        val size = this.card.getMostArrows()
+        val size = this.mainActivity.card.getMostArrows()
         if (size == 0) {
             //Default
             addArrowTableMargin(3)
@@ -101,8 +102,8 @@ class TableFragment(private val card: Card): Fragment(), Observer {
             addArrowTableMargin(size)
         }
 
-        for (i in 0 until this.card.ends.size-1) {
-            addEnd(this.card.ends[i], i)
+        for (i in 0 until this.mainActivity.card.ends.size-1) {
+            addEnd(this.mainActivity.card.ends[i], i)
         }
 
     }

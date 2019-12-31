@@ -37,8 +37,8 @@ class ArrowMarkerFancy(val arrow: Arrow, var targetView: TargetView) {
 
     fun drawMarker(canvas: Canvas) {
         //Get coords
-        val cmCoords = ConversionUtils.cmPolarToCoordinates(arrow.angle, arrow.distance, targetView.targetFace)
-        val markerCoords = ConversionUtils.cmToPixel(cmCoords.first, cmCoords.second, targetView, targetView.targetFace)
+        val cmCoords = ConversionUtils.cmPolarToCoordinates(arrow.angle, arrow.distance, targetView.mainActivity.card.targetFace)
+        val markerCoords = ConversionUtils.cmToPixel(cmCoords.first, cmCoords.second, targetView, targetView.mainActivity.card.targetFace)
 
         //Draw index
         canvas.drawLine(markerCoords.first, markerCoords.second, markerCoords.first, markerCoords.second - vaneLength, indexVane)

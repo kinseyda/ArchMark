@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import com.kinsey.archmark.MainActivity
 import com.kinsey.archmark.R
 import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.TargetFace
 import java.util.*
 
-class TargetFragment(private val targetFace: TargetFace, private val card: Card): Fragment(), Observer {
+class TargetFragment(private val mainActivity: MainActivity): Fragment(), Observer {
     lateinit var targetView: TargetView
 
     lateinit var parentContext: Context
@@ -28,7 +29,7 @@ class TargetFragment(private val targetFace: TargetFace, private val card: Card)
     }
 
     private fun initView(parentView: View) {
-        this.targetView = TargetView(this.parentContext, this.targetFace, this.card)
+        this.targetView = TargetView(this.parentContext, this.mainActivity)
         val constraintLayout: ConstraintLayout = parentView.findViewById(R.id.target_holder)
         constraintLayout.addView(targetView)
     }
