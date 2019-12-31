@@ -5,7 +5,7 @@ import java.io.File
 import java.io.IOException
 import java.util.*
 
-data class Head(val time: Long, val total: Float, val arrows: Int)
+data class Head(var time: Long, var total: Float, var arrows: Int)
 
 /**
  * Finite-State-Machine based approach to loading.
