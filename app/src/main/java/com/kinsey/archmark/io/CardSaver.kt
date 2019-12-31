@@ -4,6 +4,7 @@ import com.kinsey.archmark.model.Arrow
 import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.End
 import java.io.File
+import kotlin.time.milliseconds
 
 /**
  * Format:
@@ -23,7 +24,7 @@ object CardSaver {
 			String.format(
 				"""
 				|Head:
-				|	Time: %s
+				|	Time: %d
 				|	Total: %f
 				|	Arrows: %d
 				|

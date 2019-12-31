@@ -5,7 +5,7 @@ import java.io.File
 import java.io.IOException
 import java.util.*
 
-data class Head(val time: Date, val total: Float, val arrows: Int)
+data class Head(val time: Long, val total: Float, val arrows: Int)
 
 /**
  * Finite-State-Machine based approach to loading.
@@ -27,7 +27,7 @@ object CardLoader {
     fun loadHead(file: File): Head{
 
 
-        return Head(Date(), 0f,0)
+        return Head(0, 0f,0)
     }
 
 }
