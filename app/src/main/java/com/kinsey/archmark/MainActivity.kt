@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         val viewPager: ViewPager = findViewById(R.id.viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
 
+        this.card.addObserver(this.targetFragment)
+        this.card.addObserver(this.tableFragment)
 
         targetFragment.parentContext = this
         tableFragment.parentContext = this
@@ -40,16 +42,19 @@ class MainActivity : AppCompatActivity() {
 
 
     fun onFinishEndClicked(v: View) {
-        tableFragment.updateEnd(this.targetFragment.targetView)
+        this.card.newEnd()
     }
 
     fun onUndoClicked(v: View) {
-        val lst = card.currentEnd().arrows
-        if (lst.size > 0) {
-            this.card.currentEnd().arrows.removeAt(lst.size - 1)
-            targetFragment.targetView.invalidate()
-        }
+        this.card.removeLastArrow()
+
     }
+
+    fun onClearClicked(v: View) {
+        println("Clear!")
+        card.clear()
+    }
+
 
     fun onSaveClicked(v: View) {        val file = File(this.filesDir.toString() + "/Card" + ".txt")
         println("Created:" + file.createNewFile())
