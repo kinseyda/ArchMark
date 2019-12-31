@@ -40,4 +40,14 @@
         android:onClick="onClearClicked"
         android:text="@string/clearButton" />
 
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSaveClicked"
+        android:text="@string/saveButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/undo" />
+
 </LinearLayout>
