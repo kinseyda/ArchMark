@@ -19,12 +19,11 @@ import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
     //Model
-    private var card: Card = Card()
-    private var targetFace:TargetFace = card.targetFace
+    var card: Card = Card()
 
     //Fragments
-    private var targetFragment = TargetFragment(this.targetFace, this.card)
-    private var tableFragment = TableFragment(this.card)
+    private var targetFragment = TargetFragment( this)
+    private var tableFragment = TableFragment(this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
