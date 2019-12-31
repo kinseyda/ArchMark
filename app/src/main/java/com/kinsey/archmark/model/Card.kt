@@ -49,7 +49,7 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
         return Collections.max(ends.map { it.arrows.size })
     }
 
-    private fun change() {
+    fun change() {
         this.setChanged()
         this.notifyObservers()
     }
