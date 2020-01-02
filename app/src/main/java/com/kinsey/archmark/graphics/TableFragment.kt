@@ -15,13 +15,15 @@ import com.kinsey.archmark.MainActivity
 import com.kinsey.archmark.R
 import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.End
+import java.lang.Integer.max
 import java.util.*
-import java.util.Collections.max
 
 class TableFragment(private val mainActivity: MainActivity): Fragment(), Observer {
 
     private lateinit var arrowTable: TableLayout
     lateinit var parentContext: Context
+
+    private val defaultEndSize = 3
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,7 +63,9 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1); setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f) })
 
-        for (i in 0 until this.mainActivity.card.getMostArrows()) {
+        val size = max(this.defaultEndSize, this.mainActivity.card.getMostArrows())
+
+        for (i in 0 until size) {
             val arrowLst = end.arrows.sortedBy { it.distance }
             row.addView(TextView(this.activity!!).apply{
                 text = arrowLst.getOrNull(i)?.findScore()?.toInt()?.toString() ?: ""
@@ -93,14 +97,8 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
     private fun updateEnd() {
         this.arrowTable.removeAllViews()
 
-        val size = this.mainActivity.card.getMostArrows()
-        if (size == 0) {
-            //Default
-            addArrowTableMargin(3)
-        }
-        else {
-            addArrowTableMargin(size)
-        }
+        val size = max(this.mainActivity.card.getMostArrows(), this.defaultEndSize)
+        addArrowTableMargin(size)
 
         for (i in 0 until this.mainActivity.card.ends.size) {
             addEnd(this.mainActivity.card.ends[i], i)
