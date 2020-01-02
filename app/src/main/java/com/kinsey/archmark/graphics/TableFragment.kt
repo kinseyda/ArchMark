@@ -28,6 +28,8 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
 
     private val defaultEndSize = 3
 
+    private val selectedRowColor = Color.LTGRAY
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,6 +72,8 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
             val cardIndex = arrowTable.indexOfChild(v)-1
             this.mainActivity.card.setCurrentEndTo(cardIndex)
         }
+
+        if (end == this.mainActivity.card.currentEnd) row.setBackgroundColor(this.selectedRowColor)
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1); setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f) })
 
