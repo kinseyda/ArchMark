@@ -49,7 +49,7 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
 
         this.arrowMarkers.clear()
 
-        for (arrow in this.mainActivity.card.currentEnd().arrows) {
+        for (arrow in this.mainActivity.card.currentEnd.arrows) {
             this.arrowMarkers.add(ArrowMarker(arrow, this))
         }
 
