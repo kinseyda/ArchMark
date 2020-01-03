@@ -5,8 +5,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import com.kinsey.archmark.graphics.TableFragment
 import com.kinsey.archmark.graphics.TargetFragment
 import com.kinsey.archmark.io.CardLoader
@@ -32,6 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         val viewPager: ViewPager = findViewById(R.id.viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
+
+        val tabLayout: TabLayout = findViewById(R.id.tab_layout)
+        tabLayout.setupWithViewPager(viewPager)
+
 
         initCard()
 
@@ -80,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 }
 
 
-private class MainPagerAdapter(fm: FragmentManager, private val targetFragment: TargetFragment, private val tableFragment: TableFragment) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+private class MainPagerAdapter(fm: FragmentManager, private val targetFragment: TargetFragment, private val tableFragment: TableFragment) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getCount(): Int  = 2
 
@@ -97,6 +102,6 @@ private class MainPagerAdapter(fm: FragmentManager, private val targetFragment: 
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return "OBJECT ${(position + 1)}"
+        return if (position == 0) "Target" else "Scorecard"
     }
 }
