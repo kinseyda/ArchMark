@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        this.setSupportActionBar(findViewById(R.id.toolbar))
+
         val viewPager: ViewPager = findViewById(R.id.viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
 
