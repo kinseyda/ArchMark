@@ -141,7 +141,19 @@ object CardLoader {
     }
 
     private fun makeErrorString(state: State, lineNum: Int): String {
-        return ""
+        val s = when (state) {
+            State.HEAD -> "start of file head"
+            State.HEAD_TIME -> "card time"
+            State.HEAD_TOTAL -> "cumulative total"
+            State.HEAD_ARROWS -> "quantity of arrows"
+            State.BODY -> "start of file body"
+            State.BODY_END_ARROW -> "start of arrow or new end"
+            State.BODY_ARROW_ANGLE -> "arrow angle"
+            State.BODY_ARROW_DISTANCE -> "arrow distance"
+            State.BODY_ARROW_FORSCORE -> "arrow forScore value"
+        }
+
+        return String.format("Error loading card: Line %d, Expected %s", lineNum, s)
     }
 
 }
