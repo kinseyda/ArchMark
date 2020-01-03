@@ -43,6 +43,7 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
 
     private fun initView(parentView: View) {
         this.arrowTable = parentView.findViewById(R.id.arrow_table)
+        updateEnd()
     }
 
     private fun addArrowTableMargin(arrows: Int) {
