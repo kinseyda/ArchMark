@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ConstraintLayout"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
-    android:paddingTop="30dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/scoreTitle"
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:textSize="50sp" />
-    
+        android:text="@string/scoreTitle"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <TableLayout
             android:id="@+id/arrow_table"
@@ -33,28 +42,43 @@
 
     <Button
         android:id="@+id/clear"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="70dp"
-        android:textSize="20sp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:onClick="onClearClicked"
-        android:text="@string/clearButton" />
+        android:text="@string/clearButton"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
 
     <Button
         android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:onClick="onSaveClicked"
         android:text="@string/saveButton"
+        app:layout_constraintBottom_toTopOf="@+id/load"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/undo" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/load"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:onClick="onLoadClicked"
-        android:text="@string/loadButton" />
+        android:text="@string/loadButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
