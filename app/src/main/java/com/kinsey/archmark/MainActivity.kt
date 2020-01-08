@@ -16,6 +16,7 @@ import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.TargetFace
 import java.io.File
 import java.io.IOException
+import android.view.Menu
 
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         val tabLayout: TabLayout = findViewById(R.id.tab_layout)
         tabLayout.setupWithViewPager(viewPager)
 
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         initCard()
 
@@ -82,6 +84,11 @@ class MainActivity : AppCompatActivity() {
         catch(e: IOException) {
             println(e.message)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_activity_toolbar, menu)
+        return true
     }
 
 }
