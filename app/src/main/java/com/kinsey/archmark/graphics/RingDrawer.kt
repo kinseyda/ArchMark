@@ -9,7 +9,21 @@ import com.kinsey.archmark.model.TargetFace
 object RingDrawer {
 
     private val paint = Paint().apply { style = Paint.Style.FILL }
-    private var outline: Int = Color.BLACK
+    private var outlineMap: MutableMap<Int, Int> = mutableMapOf(
+
+        1 to Color.BLACK,
+        2 to Color.BLACK,
+        3 to Color.BLACK,
+        4 to Color.WHITE,
+        5 to Color.BLACK,
+        6 to Color.BLACK,
+        7 to Color.BLACK,
+        8 to Color.BLACK,
+        9 to Color.BLACK,
+        10 to Color.BLACK,
+        11 to Color.BLACK
+
+    )
     private var outlineWidth: Float = 2f
     private var colorMap: MutableMap<Int, Int> = mutableMapOf(
 
@@ -30,7 +44,9 @@ object RingDrawer {
     fun drawRing(canvas: Canvas, ring: Ring, targetFace: TargetFace,centerX: Int, centerY: Int, viewRadius: Int) {
         val ringRadius = viewRadius*(ring.radius/(targetFace.diameter/2))
 
-        paint.color = outline
+        RingDrawer.outlineMap[ring.score.toInt()]?.let {
+            paint.color = it
+        }
         canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius + outlineWidth, paint)
 
         RingDrawer.colorMap[ring.score.toInt()]?.let { 
