@@ -3,15 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:icon="@android:drawable/ic_menu_revert"
+        android:onClick="onUndoClicked"
         android:title="@string/undoButton"
         app:showAsAction="ifRoom" />
     <item
+        android:onClick="onClearClicked"
         android:title="@string/clearButton"
         app:showAsAction="never" />
     <item
+        android:onClick="onSaveClicked"
         android:title="@string/saveButton"
         app:showAsAction="never" />
     <item
+        android:onClick="onLoadClicked"
         android:title="@string/loadButton"
         app:showAsAction="never" />
 </menu>

@@ -11,10 +11,11 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/clear"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,46 +26,5 @@
             android:layout_height="wrap_content"
             android:stretchColumns="*" />
     </ScrollView>
-
-    <Button
-        android:id="@+id/clear"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:onClick="onClearClicked"
-        android:text="@string/clearButton"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView" />
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:onClick="onSaveClicked"
-        android:text="@string/saveButton"
-        app:layout_constraintBottom_toTopOf="@+id/load"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/load"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:onClick="onLoadClicked"
-        android:text="@string/loadButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

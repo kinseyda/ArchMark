@@ -17,6 +17,7 @@ import com.kinsey.archmark.model.TargetFace
 import java.io.File
 import java.io.IOException
 import android.view.Menu
+import android.view.MenuItem
 
 
 class MainActivity : AppCompatActivity() {
@@ -59,23 +60,23 @@ class MainActivity : AppCompatActivity() {
         this.card.newEnd()
     }
 
-    fun onUndoClicked(v: View) {
+    fun onUndoClicked(menuItem: MenuItem) {
         this.card.removeLastArrow()
 
     }
 
-    fun onClearClicked(v: View) {
+    fun onClearClicked(menuItem: MenuItem) {
         card.clear()
     }
 
 
-    fun onSaveClicked(v: View) {
+    fun onSaveClicked(menuItem: MenuItem) {
         val file = File(this.filesDir.toString() + "/Card" + ".txt")
         file.createNewFile()
         CardSaver.saveCard(this.card, file)
     }
 
-    fun onLoadClicked(v: View) {
+    fun onLoadClicked(menuItem: MenuItem) {
         try {
             this.card = CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt"))
             initCard()
