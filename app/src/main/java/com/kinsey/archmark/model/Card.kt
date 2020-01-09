@@ -23,6 +23,8 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
         return lst
     }
 
+    fun scoreMatrix(): List<List<Float>> = this.ends.map { it.scoreList() }
+
     fun newEnd() {
         //Switch to last end if empty
         if (this.ends.size > 0 && this.ends.last().arrows.isEmpty()) {
