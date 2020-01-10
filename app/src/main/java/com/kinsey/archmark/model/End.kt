@@ -20,4 +20,10 @@ class End {
 
     fun scoreList(): List<Float> = arrows.map{it.findScore()}
 
+    fun copy(newCard: Card): End {
+        val copy = End()
+        copy.arrows = this.arrows.map {it.copy(newCard)}.toMutableList()
+        return copy
+    }
+
 }

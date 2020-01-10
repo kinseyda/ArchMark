@@ -68,4 +68,10 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
         this.ends = mutableListOf()
         this.newEnd()
     }
+
+    fun copy(): Card {
+        val copy = Card(this.time)
+        copy.ends = this.ends.map {it.copy(copy)}.toMutableList()
+        return copy
+    }
 }

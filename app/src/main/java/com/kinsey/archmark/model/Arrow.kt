@@ -13,4 +13,8 @@ class Arrow(val angle: Float, val distance: Float, val card: Card, var forScore:
         return this.findRing()?.score ?: 0f
     }
 
+    fun copy(card: Card): Arrow {
+        return Arrow(angle, distance, card, forScore)
+    }
+
 }
