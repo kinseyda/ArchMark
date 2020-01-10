@@ -71,14 +71,14 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
         row.setOnClickListener { v ->
             // Current Row Index
             val cardIndex = arrowTable.indexOfChild(v)-1
-            this.mainActivity.card.setCurrentEndTo(cardIndex)
+            this.mainActivity.getCard().setCurrentEndTo(cardIndex)
         }
 
-        if (end == this.mainActivity.card.currentEnd) row.setBackgroundColor(this.selectedRowColor)
+        if (end == this.mainActivity.getCard().currentEnd) row.setBackgroundColor(this.selectedRowColor)
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1); setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f) })
 
-        val size = max(this.defaultEndSize, this.mainActivity.card.getMostArrows())
+        val size = max(this.defaultEndSize, this.mainActivity.getCard().getMostArrows())
 
         for (i in 0 until size) {
             val arrowLst = end.arrows.sortedBy { it.distance }
@@ -95,7 +95,7 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
         })
         //Add cumulative total
         row.addView((TextView(this.activity!!).apply {
-            text = mainActivity.card.cumulativeScore(index).toInt().toString()
+            text = mainActivity.getCard().cumulativeScore(index).toInt().toString()
             setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f)
         }))
 
@@ -112,11 +112,11 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
     private fun updateEnd() {
         this.arrowTable.removeAllViews()
 
-        val size = max(this.mainActivity.card.getMostArrows(), this.defaultEndSize)
+        val size = max(this.mainActivity.getCard().getMostArrows(), this.defaultEndSize)
         addArrowTableMargin(size)
 
-        for (i in 0 until this.mainActivity.card.ends.size) {
-            addEnd(this.mainActivity.card.ends[i], i)
+        for (i in 0 until this.mainActivity.getCard().ends.size) {
+            addEnd(this.mainActivity.getCard().ends[i], i)
         }
 
     }

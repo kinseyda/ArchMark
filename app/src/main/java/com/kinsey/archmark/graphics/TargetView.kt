@@ -23,10 +23,10 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
         if (event.action == MotionEvent.ACTION_UP) {
-            val cm = ConversionUtils.pixelToCm(event.x, event.y, this, this.mainActivity.card.targetFace)
-            val polar = ConversionUtils.cmCoordinatesToPolar(cm.first, cm.second, this.mainActivity.card.targetFace)
-            val arrow = Arrow(polar.first, polar.second, this.mainActivity.card)
-            this.mainActivity.card.addArrow(arrow)
+            val cm = ConversionUtils.pixelToCm(event.x, event.y, this, this.mainActivity.getCard().targetFace)
+            val polar = ConversionUtils.cmCoordinatesToPolar(cm.first, cm.second, this.mainActivity.getCard().targetFace)
+            val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
+            this.mainActivity.getCard().addArrow(arrow)
         }
         
         return true
@@ -43,13 +43,13 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
         var centerX = this.width/2
         var centerY = this.height/2
         val radius = min(this.paddedWidth, this.paddedHeight)/2
-        for (ring in this.mainActivity.card.targetFace.rings) {
-            RingDrawer.drawRing(canvas, ring, this.mainActivity.card.targetFace, centerX, centerY, radius)
+        for (ring in this.mainActivity.getCard().targetFace.rings) {
+            RingDrawer.drawRing(canvas, ring, this.mainActivity.getCard().targetFace, centerX, centerY, radius)
         }
 
         this.arrowMarkers.clear()
 
-        for (arrow in this.mainActivity.card.currentEnd.arrows) {
+        for (arrow in this.mainActivity.getCard().currentEnd.arrows) {
             this.arrowMarkers.add(ArrowMarker(arrow, this))
         }
 

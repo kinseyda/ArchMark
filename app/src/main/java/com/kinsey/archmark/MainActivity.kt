@@ -18,11 +18,58 @@ import java.io.File
 import java.io.IOException
 import android.view.Menu
 import android.view.MenuItem
+import java.util.*
 
+
+class CardHistory(var card: Card = Card()): Observable(), Observer {
+    private var undoStack = Stack<Card>()
+    private var redoStack = Stack<Card>()
+
+    private var old = this.card.copy()
+
+    init {
+        observeCard()
+        update(this.card, null) //So that the empty card is a saved state
+    }
+
+
+    override fun update(o: Observable?, arg: Any?) {
+        redoStack.clear()
+        undoStack.push(this.old)
+        this.old = this.card.copy()
+        change()
+    }
+
+    private fun observeCard() {
+        this.card.deleteObservers()
+        this.card.addObserver(this)
+    }
+
+    private fun change() {
+        this.setChanged()
+        this.notifyObservers()
+    }
+
+    fun undoEmpty() = undoStack.isEmpty()
+    fun redoEmpty() = redoStack.isEmpty()
+
+    fun undo() {
+        if (!undoEmpty()) {
+            redoStack.push(this.card.copy())
+            this.card = undoStack.pop()
+            this.old = this.card.copy()
+            this.observeCard()
+            this.change()
+        }
+    }
+
+}
 
 class MainActivity : AppCompatActivity() {
+
     //Model
-    var card: Card = Card()
+    var cardHistory = CardHistory()
+    fun getCard() = this.cardHistory.card
 
     //Fragments
     private var targetFragment = TargetFragment( this)
@@ -43,44 +90,42 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        initCard()
+        initHistory()
 
         targetFragment.parentContext = this
         tableFragment.parentContext = this
 
     }
 
-    private fun initCard() {
-        this.card.addObserver(this.targetFragment)
-        this.card.addObserver(this.tableFragment)
+    private fun initHistory() {
+        this.cardHistory.addObserver(this.targetFragment)
+        this.cardHistory.addObserver(this.tableFragment)
     }
 
-
     fun onFinishEndClicked(v: View) {
-        this.card.newEnd()
+        this.getCard().newEnd()
     }
 
     fun onUndoClicked(menuItem: MenuItem) {
-        this.card.removeLastArrow()
+        this.cardHistory.undo()
 
     }
 
     fun onClearClicked(menuItem: MenuItem) {
-        card.clear()
+        this.getCard().clear()
     }
 
 
     fun onSaveClicked(menuItem: MenuItem) {
         val file = File(this.filesDir.toString() + "/Card" + ".txt")
         file.createNewFile()
-        CardSaver.saveCard(this.card, file)
+        CardSaver.saveCard(this.getCard(), file)
     }
 
     fun onLoadClicked(menuItem: MenuItem) {
         try {
-            this.card = CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt"))
-            initCard()
-            this.card.change()
+            this.cardHistory = CardHistory(CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt")))
+            initHistory()
         }
         catch(e: IOException) {
             println(e.message)
