@@ -44,7 +44,7 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
         this.card.addObserver(this)
     }
 
-    private fun change() {
+    fun change() {
         this.setChanged()
         this.notifyObservers()
     }
