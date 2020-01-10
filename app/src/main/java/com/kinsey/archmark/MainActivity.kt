@@ -22,8 +22,8 @@ import java.util.*
 
 
 class CardHistory(var card: Card = Card()): Observable(), Observer {
-    private var undoStack = Stack<Card>()
-    private var redoStack = Stack<Card>()
+    private var undoList = mutableListOf<Card>()
+    private var redoList = mutableListOf<Card>()
 
     private var old = this.card.copy()
 
@@ -33,8 +33,8 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
 
 
     override fun update(o: Observable?, arg: Any?) {
-        redoStack.clear()
-        undoStack.push(this.old)
+        redoList.clear()
+        undoList.add(0, this.old)
         this.old = this.card.copy()
         change()
     }
@@ -49,13 +49,13 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
         this.notifyObservers()
     }
 
-    fun undoEmpty() = undoStack.isEmpty()
-    fun redoEmpty() = redoStack.isEmpty()
+    fun undoEmpty() = undoList.isEmpty()
+    fun redoEmpty() = redoList.isEmpty()
 
     fun undo() {
         if (!undoEmpty()) {
-            redoStack.push(this.card.copy())
-            this.card = undoStack.pop()
+            redoList.add(0, this.card.copy())
+            this.card = undoList.removeAt(0)
             this.old = this.card.copy()
             this.observeCard()
             this.change()
@@ -64,8 +64,8 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
 
     fun redo() {
         if (!redoEmpty()) {
-            undoStack.push(this.card.copy())
-            this.card = redoStack.pop()
+            undoList.add(0, this.card.copy())
+            this.card = redoList.removeAt(0)
             this.old = this.card.copy()
             this.observeCard()
             this.change()
