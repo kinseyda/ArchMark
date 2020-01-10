@@ -29,7 +29,6 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
 
     init {
         observeCard()
-        update(this.card, null) //So that the empty card is a saved state
     }
 
 
