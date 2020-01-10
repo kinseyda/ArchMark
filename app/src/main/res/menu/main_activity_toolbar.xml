@@ -7,6 +7,11 @@
         android:title="@string/undoButton"
         app:showAsAction="ifRoom" />
     <item
+        android:icon="@drawable/ic_redo_24dp"
+        android:onClick="onRedoClicked"
+        android:title="@string/redoButton"
+        app:showAsAction="ifRoom" />
+    <item
         android:onClick="onClearClicked"
         android:title="@string/clearButton"
         app:showAsAction="never" />

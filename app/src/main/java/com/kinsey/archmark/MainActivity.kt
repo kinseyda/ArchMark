@@ -62,6 +62,16 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
         }
     }
 
+    fun redo() {
+        if (!redoEmpty()) {
+            undoStack.push(this.card.copy())
+            this.card = redoStack.pop()
+            this.old = this.card.copy()
+            this.observeCard()
+            this.change()
+        }
+    }
+
 }
 
 class MainActivity : AppCompatActivity() {
@@ -107,6 +117,11 @@ class MainActivity : AppCompatActivity() {
 
     fun onUndoClicked(menuItem: MenuItem) {
         this.cardHistory.undo()
+
+    }
+
+    fun onRedoClicked(menuItem: MenuItem) {
+        this.cardHistory.redo()
 
     }
 
