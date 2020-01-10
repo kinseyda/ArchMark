@@ -140,6 +140,7 @@ class MainActivity : AppCompatActivity() {
         try {
             this.cardHistory = CardHistory(CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt")))
             initHistory()
+            this.cardHistory.change()
         }
         catch(e: IOException) {
             println(e.message)
