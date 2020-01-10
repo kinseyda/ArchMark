@@ -18,12 +18,15 @@ import java.io.File
 import java.io.IOException
 import android.view.Menu
 import android.view.MenuItem
+import java.lang.Integer.min
 import java.util.*
 
 
 class CardHistory(var card: Card = Card()): Observable(), Observer {
     private var undoList = mutableListOf<Card>()
     private var redoList = mutableListOf<Card>()
+
+    private var stackSize = 5
 
     private var old = this.card.copy()
 
@@ -35,6 +38,7 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
     override fun update(o: Observable?, arg: Any?) {
         redoList.clear()
         undoList.add(0, this.old)
+        this.undoList = this.undoList.subList(0, min(stackSize, this.undoList.size))
         this.old = this.card.copy()
         change()
     }
