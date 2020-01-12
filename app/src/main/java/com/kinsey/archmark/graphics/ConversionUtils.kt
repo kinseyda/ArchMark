@@ -87,8 +87,8 @@ object ConversionUtils {
      * @return a [Pair] containing the converted x and y coordinates.
      */
     fun cmToPixel(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
-        val xPx = getAbsolutePxCoordinate(x, targetFace.diameter, targetView.paddedHeight, targetView.leftPadding)
-        val yPx = getAbsolutePxCoordinate(y, targetFace.diameter, targetView.paddedWidth, targetView.rightPadding)
+        val xPx = getAbsolutePxCoordinate(x, targetFace.diameter, targetView.paddedWidth, targetView.leftPadding)
+        val yPx = getAbsolutePxCoordinate(y, targetFace.diameter, targetView.paddedHeight, targetView.topPadding)
 
         return Pair(xPx, yPx)
 
