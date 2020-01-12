@@ -40,8 +40,8 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
         this.paddedWidth = this.width - leftPadding - rightPadding
 
         //First draw rings
-        var centerX = this.width/2
-        var centerY = this.height/2
+        var centerX = this.leftPadding + (this.paddedWidth/2)
+        var centerY = this.topPadding + (this.paddedHeight/2)
         val radius = min(this.paddedWidth, this.paddedHeight)/2
         for (ring in this.mainActivity.getCard().targetFace.rings) {
             RingDrawer.drawRing(canvas, ring, this.mainActivity.getCard().targetFace, centerX, centerY, radius)
