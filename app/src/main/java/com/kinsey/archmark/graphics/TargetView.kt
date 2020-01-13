@@ -2,6 +2,7 @@ package com.kinsey.archmark.graphics
 
 import android.content.Context
 import android.graphics.Canvas
+import android.util.TypedValue
 import android.view.MotionEvent
 import android.view.View
 import com.kinsey.archmark.MainActivity
@@ -13,7 +14,7 @@ import java.lang.Integer.min
 class TargetView (context: Context, var mainActivity: MainActivity): View(context) {
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
-    val padding = 300
+    val padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.getDisplayMetrics()).toInt()
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
