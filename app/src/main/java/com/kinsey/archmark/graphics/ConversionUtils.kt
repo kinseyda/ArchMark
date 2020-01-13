@@ -19,8 +19,9 @@ object ConversionUtils {
      * @return a [Pair] containing the converted x and y coordinates.
      */
     fun pixelToCm(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
-        val xCm = getRelativeCmCoordinate(x, targetView.leftPadding, targetView.paddedWidth, targetFace.diameter)
-        val yCm = getRelativeCmCoordinate(y, targetView.topPadding, targetView.paddedHeight, targetFace.diameter)
+        val dimToUse = min(targetView.height - (targetView.padding*2), targetView.width - (targetView.padding*2))
+        val xCm = getRelativeCmCoordinate(x, targetView.padding, dimToUse, targetFace.diameter)
+        val yCm = getRelativeCmCoordinate(y, targetView.padding, dimToUse, targetFace.diameter)
         return Pair(xCm, yCm)
     }
 
@@ -87,8 +88,9 @@ object ConversionUtils {
      * @return a [Pair] containing the converted x and y coordinates.
      */
     fun cmToPixel(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
-        val xPx = getAbsolutePxCoordinate(x, targetFace.diameter, targetView.paddedWidth, targetView.leftPadding)
-        val yPx = getAbsolutePxCoordinate(y, targetFace.diameter, targetView.paddedHeight, targetView.topPadding)
+        val dimToUse = min(targetView.height - (targetView.padding*2), targetView.width - (targetView.padding*2))
+        val xPx = getAbsolutePxCoordinate(x, targetFace.diameter, dimToUse, targetView.padding)
+        val yPx = getAbsolutePxCoordinate(y, targetFace.diameter, dimToUse, targetView.padding)
 
         return Pair(xPx, yPx)
 

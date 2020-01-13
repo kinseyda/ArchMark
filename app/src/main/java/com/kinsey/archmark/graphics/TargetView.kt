@@ -13,12 +13,7 @@ import java.lang.Integer.min
 class TargetView (context: Context, var mainActivity: MainActivity): View(context) {
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
-    val topPadding = 80
-    val bottomPadding = 80
-    val leftPadding = 80
-    val rightPadding = 80
-    var paddedHeight = this.height - topPadding - bottomPadding
-    var paddedWidth = this.width - leftPadding - rightPadding
+    val padding = 300
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
 
@@ -26,6 +21,8 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
             val cm = ConversionUtils.pixelToCm(event.x, event.y, this, this.mainActivity.getCard().targetFace)
             val polar = ConversionUtils.cmCoordinatesToPolar(cm.first, cm.second, this.mainActivity.getCard().targetFace)
             val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
+            println("Distance: " + arrow.distance)
+            println("Score: " + arrow.findScore())
             this.mainActivity.getCard().addArrow(arrow)
         }
         
@@ -36,13 +33,10 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        this.paddedHeight = this.height - topPadding - bottomPadding
-        this.paddedWidth = this.width - leftPadding - rightPadding
-
         //First draw rings
-        var centerX = this.leftPadding + (this.paddedWidth/2)
-        var centerY = this.topPadding + (this.paddedHeight/2)
-        val radius = min(this.paddedWidth, this.paddedHeight)/2
+        var centerX = this.width/2
+        var centerY = this.height/2
+        val radius = min(this.width-(padding*2), this.height-(padding*2))/2
         for (ring in this.mainActivity.getCard().targetFace.rings) {
             RingDrawer.drawRing(canvas, ring, this.mainActivity.getCard().targetFace, centerX, centerY, radius)
         }
