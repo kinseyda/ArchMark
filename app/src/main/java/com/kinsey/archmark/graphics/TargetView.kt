@@ -21,8 +21,6 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
             val cm = ConversionUtils.pixelToCm(event.x, event.y, this, this.mainActivity.getCard().targetFace)
             val polar = ConversionUtils.cmCoordinatesToPolar(cm.first, cm.second, this.mainActivity.getCard().targetFace)
             val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
-            println("Distance: " + arrow.distance)
-            println("Score: " + arrow.findScore())
             this.mainActivity.getCard().addArrow(arrow)
         }
         
