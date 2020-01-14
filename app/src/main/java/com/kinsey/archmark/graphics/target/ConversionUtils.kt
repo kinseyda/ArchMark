@@ -1,4 +1,4 @@
-package com.kinsey.archmark.graphics
+package com.kinsey.archmark.graphics.target
 
 import com.kinsey.archmark.model.TargetFace
 import kotlin.math.*
@@ -20,8 +20,18 @@ object ConversionUtils {
      */
     fun pixelToCm(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
         val dimToUse = min(targetView.height - (targetView.padding*2), targetView.width - (targetView.padding*2))
-        val xCm = getRelativeCmCoordinate(x, targetView.padding, dimToUse, targetFace.diameter)
-        val yCm = getRelativeCmCoordinate(y, targetView.padding, dimToUse, targetFace.diameter)
+        val xCm = getRelativeCmCoordinate(
+            x,
+            targetView.padding,
+            dimToUse,
+            targetFace.diameter
+        )
+        val yCm = getRelativeCmCoordinate(
+            y,
+            targetView.padding,
+            dimToUse,
+            targetFace.diameter
+        )
         return Pair(xCm, yCm)
     }
 
@@ -41,8 +51,10 @@ object ConversionUtils {
         //Target radius offsets coordinates by radius in x and y directions, that's why the functions need them
         val targetRadius = targetFace.diameter/2
 
-        val radius = getPolarRadius(targetRadius, x, y)
-        var angle = getPolarAngle(targetRadius, x, y)
+        val radius =
+            getPolarRadius(targetRadius, x, y)
+        var angle =
+            getPolarAngle(targetRadius, x, y)
 
         //Account for CAST rule
         if ((targetRadius - y) < 0) {
@@ -89,8 +101,18 @@ object ConversionUtils {
      */
     fun cmToPixel(x: Float, y: Float, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
         val dimToUse = min(targetView.height - (targetView.padding*2), targetView.width - (targetView.padding*2))
-        val xPx = getAbsolutePxCoordinate(x, targetFace.diameter, dimToUse, targetView.padding)
-        val yPx = getAbsolutePxCoordinate(y, targetFace.diameter, dimToUse, targetView.padding)
+        val xPx = getAbsolutePxCoordinate(
+            x,
+            targetFace.diameter,
+            dimToUse,
+            targetView.padding
+        )
+        val yPx = getAbsolutePxCoordinate(
+            y,
+            targetFace.diameter,
+            dimToUse,
+            targetView.padding
+        )
 
         return Pair(xPx, yPx)
 

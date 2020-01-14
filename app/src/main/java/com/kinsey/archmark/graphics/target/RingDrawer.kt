@@ -1,4 +1,4 @@
-package com.kinsey.archmark.graphics
+package com.kinsey.archmark.graphics.target
 
 import android.graphics.Canvas
 import android.graphics.Color
@@ -44,15 +44,19 @@ object RingDrawer {
     fun drawRing(canvas: Canvas, ring: Ring, targetFace: TargetFace,centerX: Int, centerY: Int, viewRadius: Int) {
         val ringRadius = viewRadius*(ring.radius/(targetFace.diameter/2))
 
-        RingDrawer.outlineMap[ring.score.toInt()]?.let {
+        outlineMap[ring.score.toInt()]?.let {
             paint.color = it
         }
-        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius + outlineWidth, paint)
+        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius + outlineWidth,
+            paint
+        )
 
-        RingDrawer.colorMap[ring.score.toInt()]?.let { 
+        colorMap[ring.score.toInt()]?.let {
             paint.color = it
          }
-        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius, paint)
+        canvas.drawCircle(centerX.toFloat(), centerY.toFloat(), ringRadius,
+            paint
+        )
 
     }
 }

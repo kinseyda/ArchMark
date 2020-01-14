@@ -1,8 +1,10 @@
-package com.kinsey.archmark.graphics
+package com.kinsey.archmark.graphics.marker
 
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import com.kinsey.archmark.graphics.target.ConversionUtils
+import com.kinsey.archmark.graphics.target.TargetView
 import com.kinsey.archmark.model.Arrow
 import java.lang.Math.PI
 import kotlin.math.cos
@@ -37,8 +39,17 @@ class ArrowMarkerFancy(val arrow: Arrow, var targetView: TargetView) {
 
     fun drawMarker(canvas: Canvas) {
         //Get coords
-        val cmCoords = ConversionUtils.cmPolarToCoordinates(arrow.angle, arrow.distance, targetView.mainActivity.getCard().targetFace)
-        val markerCoords = ConversionUtils.cmToPixel(cmCoords.first, cmCoords.second, targetView, targetView.mainActivity.getCard().targetFace)
+        val cmCoords = ConversionUtils.cmPolarToCoordinates(
+            arrow.angle,
+            arrow.distance,
+            targetView.mainActivity.getCard().targetFace
+        )
+        val markerCoords = ConversionUtils.cmToPixel(
+            cmCoords.first,
+            cmCoords.second,
+            targetView,
+            targetView.mainActivity.getCard().targetFace
+        )
 
         //Draw index
         canvas.drawLine(markerCoords.first, markerCoords.second, markerCoords.first, markerCoords.second - vaneLength, indexVane)

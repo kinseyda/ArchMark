@@ -1,4 +1,4 @@
-package com.kinsey.archmark.graphics
+package com.kinsey.archmark.graphics.fragment
 
 import android.content.Context
 import android.graphics.Color
@@ -10,11 +10,9 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import android.util.TypedValue
-import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import com.kinsey.archmark.MainActivity
 import com.kinsey.archmark.R
-import com.kinsey.archmark.model.Card
 import com.kinsey.archmark.model.End
 import java.lang.Integer.max
 import java.util.*

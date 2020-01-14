@@ -8,12 +8,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-import com.kinsey.archmark.graphics.TableFragment
-import com.kinsey.archmark.graphics.TargetFragment
+import com.kinsey.archmark.graphics.fragment.TableFragment
+import com.kinsey.archmark.graphics.fragment.TargetFragment
 import com.kinsey.archmark.io.CardLoader
 import com.kinsey.archmark.io.CardSaver
 import com.kinsey.archmark.model.Card
-import com.kinsey.archmark.model.TargetFace
 import java.io.File
 import java.io.IOException
 import android.view.Menu
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     fun getCard() = this.cardHistory.card
 
     //Fragments
-    private var targetFragment = TargetFragment( this)
+    private var targetFragment = TargetFragment(this)
     private var tableFragment = TableFragment(this)
 
 

@@ -1,13 +1,24 @@
-package com.kinsey.archmark.graphics
+package com.kinsey.archmark.graphics.marker
 
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import com.kinsey.archmark.graphics.target.ConversionUtils
+import com.kinsey.archmark.graphics.target.TargetView
 import com.kinsey.archmark.model.Arrow
 
 class ArrowMarker(val arrow: Arrow, var targetView: TargetView) {
-    private val cmCoords = ConversionUtils.cmPolarToCoordinates(arrow.angle, arrow.distance, targetView.mainActivity.getCard().targetFace)
-    private val markerCoords = ConversionUtils.cmToPixel(cmCoords.first, cmCoords.second, targetView, targetView.mainActivity.getCard().targetFace)
+    private val cmCoords = ConversionUtils.cmPolarToCoordinates(
+        arrow.angle,
+        arrow.distance,
+        targetView.mainActivity.getCard().targetFace
+    )
+    private val markerCoords = ConversionUtils.cmToPixel(
+        cmCoords.first,
+        cmCoords.second,
+        targetView,
+        targetView.mainActivity.getCard().targetFace
+    )
 
     private val outer = Paint().apply{
         style = Paint.Style.FILL
