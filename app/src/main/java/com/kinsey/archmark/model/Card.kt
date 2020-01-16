@@ -11,6 +11,8 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
 
     var targetFace = StandardFace.fortyEleven
 
+    val defaultEndSize = 3
+
     fun cumulativeScore(): Float = cumulativeScore(ends.size-1)
 
     fun cumulativeScore(upTo: Int): Float = ends.subList(0, upTo+1).map { it.endTotal() }.sum()

@@ -24,8 +24,6 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
     private lateinit var arrowTable: TableLayout
     lateinit var parentContext: Context
 
-    private val defaultEndSize = 3
-
     private val selectedRowColor = Color.LTGRAY
 
     override fun onCreateView(
@@ -76,7 +74,7 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1); setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f) })
 
-        val size = max(this.defaultEndSize, this.mainActivity.getCard().getMostArrows())
+        val size = max(this.mainActivity.getCard().defaultEndSize, this.mainActivity.getCard().getMostArrows())
 
         for (i in 0 until size) {
             val arrowLst = end.arrows.sortedBy { it.distance }
@@ -110,7 +108,7 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
     private fun updateEnd() {
         this.arrowTable.removeAllViews()
 
-        val size = max(this.mainActivity.getCard().getMostArrows(), this.defaultEndSize)
+        val size = max(this.mainActivity.getCard().getMostArrows(), this.mainActivity.getCard().defaultEndSize)
         addArrowTableMargin(size)
 
         for (i in 0 until this.mainActivity.getCard().ends.size) {
