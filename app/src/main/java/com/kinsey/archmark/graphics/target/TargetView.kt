@@ -55,6 +55,9 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
             )
         }
 
+        //Draw X
+        XDrawer.drawX(canvas, centerX, centerY)
+
         this.arrowMarkers.clear()
 
         for (arrow in this.mainActivity.getCard().currentEnd.arrows) {
