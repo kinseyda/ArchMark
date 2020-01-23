@@ -67,6 +67,7 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
             indexOrNull = null
         }
         this.currentEnd.selected = indexOrNull
+        this.change()
     }
 
     fun change() {
