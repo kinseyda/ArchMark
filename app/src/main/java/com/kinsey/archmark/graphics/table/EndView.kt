@@ -1,6 +1,7 @@
 package com.kinsey.archmark.graphics.table
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -30,6 +31,9 @@ class EndView(context: Context, attrs: AttributeSet?): LinearLayout(context, att
             tv.setOnClickListener { v ->
                 val arrowIndex = this.indexOfChild(v)
                 this.mainActivity.getCard().setCurrentArrowTo(arrowIndex)
+            }
+            if (i == this.end.selected) {
+                tv.setBackgroundColor(Color.LTGRAY)
             }
             this.addView(tv)
         }
