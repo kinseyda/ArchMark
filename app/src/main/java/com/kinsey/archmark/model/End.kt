@@ -2,9 +2,10 @@ package com.kinsey.archmark.model
 
 class End {
     var arrows: MutableList<Arrow> = mutableListOf<Arrow>()
+    var selected: Int? = null
 
     fun addArrow(arrow: Arrow) {
-        this.arrows.add(arrow)
+        selected?.let { arrows[selected!!] = arrow; selected = null } ?: run { this.arrows.add(arrow) }
     }
 
     fun removeLastArrow() {

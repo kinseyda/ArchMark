@@ -27,6 +27,10 @@ class EndView(context: Context, attrs: AttributeSet?): LinearLayout(context, att
             tv.text = arrowLst.getOrNull(i)?.findScore()?.toInt()?.toString() ?: ""
             tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f)
             tv.gravity = Gravity.CENTER
+            tv.setOnClickListener { v ->
+                val arrowIndex = this.indexOfChild(v)
+                this.mainActivity.getCard().setCurrentArrowTo(arrowIndex)
+            }
             this.addView(tv)
         }
     }

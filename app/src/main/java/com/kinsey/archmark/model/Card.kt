@@ -61,6 +61,14 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
         this.change()
     }
 
+    fun setCurrentArrowTo(i: Int) {
+        var indexOrNull: Int? = i
+        if (i == this.currentEnd.selected) {
+            indexOrNull = null
+        }
+        this.currentEnd.selected = indexOrNull
+    }
+
     fun change() {
         this.setChanged()
         this.notifyObservers()
