@@ -17,11 +17,11 @@ class EndView(context: Context, attrs: AttributeSet?): LinearLayout(context, att
     fun update(){
         this.removeAllViews()
 
-        val size = Integer.max(this.mainActivity.getCard().defaultEndSize, this.mainActivity.getCard().getMostArrows()
-        )
+        val size = Integer.max(this.mainActivity.getCard().defaultEndSize, this.mainActivity.getCard().getMostArrows())
 
+        val arrowLst = end.arrows
+        
         for (i in 0 until size) {
-            val arrowLst = end.arrows
             val tv = TextView(this.mainActivity!!)
             tv.layoutParams = LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f)
             tv.text = arrowLst.getOrNull(i)?.findScore()?.toInt()?.toString() ?: ""
