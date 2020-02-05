@@ -23,14 +23,19 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
 
     private lateinit var arrowTable: TableLayout
     lateinit var parentContext: Context
-
-    private val selectedRowColor = Color.LTGRAY
+    private var selectColor = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        val typedValue = TypedValue()
+        val theme = context!!.theme
+        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true)
+        selectColor = typedValue.data
+
 
         val parentView = inflater.inflate(R.layout.arrow_table_layout, container, false)
         initView(parentView)
@@ -70,7 +75,7 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
             this.mainActivity.getCard().setCurrentEndTo(cardIndex)
         }
 
-        if (end == this.mainActivity.getCard().currentEnd) row.setBackgroundColor(this.selectedRowColor)
+        if (end == this.mainActivity.getCard().currentEnd) row.setBackgroundColor(this.selectColor)
 
         row.addView(TextView(this.activity!!).apply { text = getString(R.string.endNum, index+1); setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20.0f) })
 

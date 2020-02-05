@@ -7,13 +7,30 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.kinsey.archmark.MainActivity
+import com.kinsey.archmark.R
 import com.kinsey.archmark.model.Arrow
 import com.kinsey.archmark.model.End
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import androidx.annotation.ColorInt
+import android.content.res.Resources.Theme
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
 
 class EndView(context: Context, attrs: AttributeSet?): LinearLayout(context, attrs) {
     lateinit var end: End
     lateinit var mainActivity: MainActivity
+    var selectColor: Int
+    init {
+        val typedValue = TypedValue()
+        val theme = context.theme
+        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true)
+        selectColor = typedValue.data
+    }
+
 
     fun update(){
         this.removeAllViews()
@@ -33,7 +50,7 @@ class EndView(context: Context, attrs: AttributeSet?): LinearLayout(context, att
                 this.mainActivity.getCard().setCurrentArrowTo(arrowIndex)
             }
             if (i == this.end.selected) {
-                tv.setBackgroundColor(Color.LTGRAY)
+                tv.setBackgroundColor(selectColor)
             }
             this.addView(tv)
         }
