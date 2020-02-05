@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.LightTheme)
         setContentView(R.layout.activity_main)
 
         this.setSupportActionBar(findViewById(R.id.toolbar))
