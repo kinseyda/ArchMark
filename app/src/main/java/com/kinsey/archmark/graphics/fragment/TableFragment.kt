@@ -13,6 +13,7 @@ import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import com.kinsey.archmark.MainActivity
 import com.kinsey.archmark.R
+import com.kinsey.archmark.graphics.color.ColorUtils
 import com.kinsey.archmark.model.End
 import java.lang.Integer.max
 import java.util.*
@@ -31,11 +32,7 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
         savedInstanceState: Bundle?
     ): View {
 
-        val typedValue = TypedValue()
-        val theme = context!!.theme
-        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true)
-        selectColor = typedValue.data
-
+        selectColor = ColorUtils.selectionBG(context!!)
 
         val parentView = inflater.inflate(R.layout.arrow_table_layout, container, false)
         initView(parentView)

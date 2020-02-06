@@ -16,20 +16,13 @@ import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.annotation.ColorInt
 import android.content.res.Resources.Theme
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-
-
+import com.kinsey.archmark.graphics.color.ColorUtils
 
 
 class EndView(context: Context, attrs: AttributeSet?): LinearLayout(context, attrs) {
     lateinit var end: End
     lateinit var mainActivity: MainActivity
-    var selectColor: Int
-    init {
-        val typedValue = TypedValue()
-        val theme = context.theme
-        theme.resolveAttribute(R.attr.colorButtonNormal, typedValue, true)
-        selectColor = typedValue.data
-    }
+    var selectColor = ColorUtils.selectionBG(context)
 
 
     fun update(){
