@@ -10,7 +10,7 @@ import java.lang.Math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-class ArrowMarkerFancy(val arrow: Arrow, var targetView: TargetView) {
+class ArrowMarkerFancy(var x: Float, var y: Float, var targetView: TargetView) {
 
     private val shaft = Paint().apply{
         style = Paint.Style.FILL
@@ -38,31 +38,19 @@ class ArrowMarkerFancy(val arrow: Arrow, var targetView: TargetView) {
 
 
     fun drawMarker(canvas: Canvas) {
-        //Get coords
-        val cmCoords = ConversionUtils.cmPolarToCoordinates(
-            arrow.angle,
-            arrow.distance,
-            targetView.mainActivity.getCard().targetFace
-        )
-        val markerCoords = ConversionUtils.cmToPixel(
-            cmCoords.first,
-            cmCoords.second,
-            targetView,
-            targetView.mainActivity.getCard().targetFace
-        )
 
         //Draw index
-        canvas.drawLine(markerCoords.first, markerCoords.second, markerCoords.first, markerCoords.second - vaneLength, indexVane)
+        canvas.drawLine(x, y, x, y - vaneLength, indexVane)
 
         //Draw hen
-        canvas.drawLine(markerCoords.first, markerCoords.second, markerCoords.first + cos(PI / 5).toFloat()*vaneLength, markerCoords.second + sin(PI / 5).toFloat()*vaneLength , henVane)
-        canvas.drawLine(markerCoords.first, markerCoords.second, markerCoords.first - cos(PI / 5).toFloat()*vaneLength, markerCoords.second + sin(PI / 5).toFloat()*vaneLength , henVane)
+        canvas.drawLine(x, y, x + cos(PI / 5).toFloat()*vaneLength, y + sin(PI / 5).toFloat()*vaneLength , henVane)
+        canvas.drawLine(x, y, x - cos(PI / 5).toFloat()*vaneLength, y + sin(PI / 5).toFloat()*vaneLength , henVane)
 
         //Draw shaft
-        canvas.drawCircle(markerCoords.first, markerCoords.second, this.shaftRadius, this.shaft)
+        canvas.drawCircle(x, y, this.shaftRadius, this.shaft)
 
         //Draw nock
-        canvas.drawCircle(markerCoords.first, markerCoords.second, this.nockRadius, this.nock)
+        canvas.drawCircle(x, y, this.nockRadius, this.nock)
 
     }
 

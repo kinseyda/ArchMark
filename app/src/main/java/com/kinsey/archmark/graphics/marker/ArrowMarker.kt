@@ -7,18 +7,7 @@ import com.kinsey.archmark.graphics.target.ConversionUtils
 import com.kinsey.archmark.graphics.target.TargetView
 import com.kinsey.archmark.model.Arrow
 
-class ArrowMarker(val arrow: Arrow, var targetView: TargetView) {
-    private val cmCoords = ConversionUtils.cmPolarToCoordinates(
-        arrow.angle,
-        arrow.distance,
-        targetView.mainActivity.getCard().targetFace
-    )
-    private val markerCoords = ConversionUtils.cmToPixel(
-        cmCoords.first,
-        cmCoords.second,
-        targetView,
-        targetView.mainActivity.getCard().targetFace
-    )
+class ArrowMarker(var x: Float, var y: Float, var targetView: TargetView) {
 
     private val outer = Paint().apply{
         style = Paint.Style.FILL
@@ -33,8 +22,8 @@ class ArrowMarker(val arrow: Arrow, var targetView: TargetView) {
     private val innerRadius = 12f
 
     fun drawMarker(canvas: Canvas) {
-        canvas.drawCircle(markerCoords.first, markerCoords.second, this.outerRadius, this.outer)
-        canvas.drawCircle(markerCoords.first, markerCoords.second, this.innerRadius, this.inner)
+        canvas.drawCircle(x, y, this.outerRadius, this.outer)
+        canvas.drawCircle(x, y, this.innerRadius, this.inner)
     }
 
 }

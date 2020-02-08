@@ -1,9 +1,15 @@
 package com.kinsey.archmark.graphics.target
 
+import com.kinsey.archmark.model.Arrow
 import com.kinsey.archmark.model.TargetFace
 import kotlin.math.*
 
 object ConversionUtils {
+
+    fun arrowXY(arrow: Arrow, targetView: TargetView, targetFace: TargetFace): Pair<Float, Float> {
+        val xy = cmPolarToCoordinates(arrow.angle, arrow.distance, targetFace)
+        return cmToPixel(xy.first, xy.second, targetView, targetFace)
+    }
 
     /**
      * Converts a given pair of x-y pixel coordinates to coordinates for a [TargetFace].

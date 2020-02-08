@@ -61,7 +61,8 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
         this.arrowMarkers.clear()
 
         for (arrow in this.mainActivity.getCard().currentEnd.arrows) {
-            this.arrowMarkers.add(ArrowMarker(arrow, this))
+            val xy = ConversionUtils.arrowXY(arrow, this, this.mainActivity.getCard().targetFace)
+            this.arrowMarkers.add(ArrowMarker(xy.first, xy.second, this))
         }
 
         //Draw arrow markers
