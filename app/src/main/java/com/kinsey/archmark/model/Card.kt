@@ -71,6 +71,14 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
         this.change(::setCurrentArrowTo)
     }
 
+    fun moveCurrentArrow(angle: Float, distance: Float) {
+        this.currentEnd.arrows[this.currentEnd.selected!!].apply{
+            this.distance = distance
+            this.angle = angle
+        }
+        change(::moveCurrentArrow)
+    }
+
     fun change(calling: Any?) {
         this.setChanged()
         this.notifyObservers(calling)

@@ -13,24 +13,36 @@ import java.lang.Integer.min
 class TargetView (context: Context, var mainActivity: MainActivity): View(context) {
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
+    private var selectedMarker: ArrowMarker? = null
+
     val padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.getDisplayMetrics()).toInt()
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-
-        if (event.action == MotionEvent.ACTION_UP) {
-            val cm = ConversionUtils.pixelToCm(
-                event.x,
-                event.y,
-                this,
-                this.mainActivity.getCard().targetFace
-            )
-            val polar = ConversionUtils.cmCoordinatesToPolar(
-                cm.first,
-                cm.second,
-                this.mainActivity.getCard().targetFace
-            )
-            val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
-            this.mainActivity.getCard().addArrow(arrow)
+        val cm = ConversionUtils.pixelToCm(
+            event.x,
+            event.y,
+            this,
+            this.mainActivity.getCard().targetFace
+        )
+        val polar = ConversionUtils.cmCoordinatesToPolar(
+            cm.first,
+            cm.second,
+            this.mainActivity.getCard().targetFace
+        )
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+//                if (this.mainActivity.getCard().currentEnd.selected != null) {
+                    val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
+                    this.mainActivity.getCard().addArrow(arrow)
+//                }
+            }
+            MotionEvent.ACTION_MOVE -> {
+                this.mainActivity.getCard().moveCurrentArrow(polar.first, polar.second)
+            }
+            MotionEvent.ACTION_UP -> {
+                this.mainActivity.getCard().currentEnd.selected = null
+                this.mainActivity.getCard().change(null)
+            }
         }
         
         return true

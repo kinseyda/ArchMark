@@ -35,10 +35,12 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
 
 
     override fun update(o: Observable?, arg: Any?) {
-        redoList.clear()
-        undoList.add(0, this.old)
-        this.undoList = this.undoList.subList(0, min(stackSize, this.undoList.size))
-        this.old = this.card.copy()
+        if (arg != this.card::moveCurrentArrow && arg != this.card::addArrow) {
+            redoList.clear()
+            undoList.add(0, this.old)
+            this.undoList = this.undoList.subList(0, min(stackSize, this.undoList.size))
+            this.old = this.card.copy()
+        }
         change()
     }
 
