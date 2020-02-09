@@ -31,23 +31,24 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
         //Switch to last end if empty
         if (this.ends.size > 0 && this.ends.last().arrows.isEmpty()) {
             this.currentEnd = this.ends.last()
-            this.change()
+            this.change(::newEnd)
         }
         else if (this.ends.size == 0 || this.currentEnd.arrows.isNotEmpty()) {
             this.ends.add(End())
             this.currentEnd = this.ends.last()
-            this.change()
+            this.change(::newEnd)
         }
     }
 
     fun addArrow(arrow: Arrow) {
         currentEnd.addArrow(arrow)
-        this.change()
+        currentEnd.selected = currentEnd.arrows.size-1
+        this.change(::addArrow)
     }
 
     fun removeLastArrow() {
         currentEnd.removeLastArrow()
-        this.change()
+        this.change(::removeLastArrow)
     }
 
     fun hasEnds() = ends.size > 0
@@ -58,7 +59,7 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
 
     fun setCurrentEndTo(i: Int) {
         this.currentEnd = this.ends[i]
-        this.change()
+        this.change(::setCurrentEndTo)
     }
 
     fun setCurrentArrowTo(i: Int) {
@@ -67,12 +68,12 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
             indexOrNull = null
         }
         this.currentEnd.selected = indexOrNull
-        this.change()
+        this.change(::setCurrentArrowTo)
     }
 
-    fun change() {
+    fun change(calling: Any?) {
         this.setChanged()
-        this.notifyObservers()
+        this.notifyObservers(calling)
     }
 
     fun clear() {
