@@ -121,6 +121,7 @@ object CardLoader {
                     if (rBodyForScore.matches(line)) {
                         arrowParams.add(rBodyForScore.find(line)?.destructured?.component1() ?: "true")
                         card!!.addArrow(Arrow(arrowParams[0].toFloat(), arrowParams[1].toFloat(), card!!, arrowParams[2].toBoolean()))
+                        card!!.deselect()
                         arrowParams.clear()
                         state = State.BODY_END_ARROW
                     }
