@@ -79,6 +79,11 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
         change(::moveCurrentArrow)
     }
 
+    fun deselect() {
+        currentEnd.selected = null
+        change(null)
+    }
+
     fun change(calling: Any?) {
         this.setChanged()
         this.notifyObservers(calling)

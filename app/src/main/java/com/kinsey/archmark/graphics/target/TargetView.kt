@@ -40,8 +40,7 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
                 this.mainActivity.getCard().moveCurrentArrow(polar.first, polar.second)
             }
             MotionEvent.ACTION_UP -> {
-                this.mainActivity.getCard().currentEnd.selected = null
-                this.mainActivity.getCard().change(null)
+                this.mainActivity.getCard().deselect()
             }
         }
         
