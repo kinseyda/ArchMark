@@ -5,7 +5,7 @@ class End {
     var selected: Int? = null
 
     fun addArrow(arrow: Arrow) {
-        selected?.let { arrows[selected!!] = arrow; selected = null } ?: run { this.arrows.add(arrow) }
+        selected?.let { arrows[selected!!] = arrow} ?: run { this.arrows.add(arrow) ; selected = this.arrows.size-1}
     }
 
     fun removeLastArrow() {

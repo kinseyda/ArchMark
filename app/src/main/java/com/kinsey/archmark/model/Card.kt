@@ -42,7 +42,6 @@ class Card(val time: Long = System.currentTimeMillis()): Observable() {
 
     fun addArrow(arrow: Arrow) {
         currentEnd.addArrow(arrow)
-        currentEnd.selected = currentEnd.arrows.size-1
         this.change(::addArrow)
     }
 
