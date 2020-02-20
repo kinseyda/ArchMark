@@ -1,6 +1,11 @@
 package com.kinsey.archmark
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -15,8 +20,6 @@ import com.kinsey.archmark.io.CardSaver
 import com.kinsey.archmark.model.Card
 import java.io.File
 import java.io.IOException
-import android.view.Menu
-import android.view.MenuItem
 import java.lang.Integer.min
 import java.util.*
 
@@ -79,6 +82,23 @@ class CardHistory(var card: Card = Card()): Observable(), Observer {
 
 }
 
+class Pager(context: Context, attributeSet: AttributeSet) : ViewPager(context, attributeSet) {
+    lateinit var mainActivity: MainActivity
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return if (!this.mainActivity.movementInProgress) {
+            super.onTouchEvent(event)
+        } else false
+    }
+
+    override fun onInterceptTouchEvent(event: MotionEvent?): Boolean {
+        return if (!this.mainActivity.movementInProgress) {
+            super.onInterceptTouchEvent(event)
+        } else false
+    }
+
+}
+
 class MainActivity : AppCompatActivity() {
 
     //Model
@@ -89,6 +109,8 @@ class MainActivity : AppCompatActivity() {
     private var targetFragment = TargetFragment(this)
     private var tableFragment = TableFragment(this)
 
+    var movementInProgress = false //Used to disable pagination when moving around an arrow
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,8 +119,9 @@ class MainActivity : AppCompatActivity() {
 
         this.setSupportActionBar(findViewById(R.id.toolbar))
 
-        val viewPager: ViewPager = findViewById(R.id.viewPager)
+        val viewPager: Pager = findViewById(R.id.viewPager)
         viewPager.adapter = MainPagerAdapter(supportFragmentManager, targetFragment, tableFragment)
+        viewPager.mainActivity = this
 
         val tabLayout: TabLayout = findViewById(R.id.tab_layout)
         tabLayout.setupWithViewPager(viewPager)
@@ -164,7 +187,6 @@ class MainActivity : AppCompatActivity() {
 private class MainPagerAdapter(fm: FragmentManager, private val targetFragment: TargetFragment, private val tableFragment: TableFragment) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getCount(): Int  = 2
-
 
     override fun getItem(i: Int): Fragment {
         lateinit var fragment: Fragment

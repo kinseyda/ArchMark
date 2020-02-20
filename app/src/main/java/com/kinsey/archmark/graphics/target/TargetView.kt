@@ -29,6 +29,7 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
         )
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
+                this.mainActivity.movementInProgress = true
                 val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
                 this.mainActivity.getCard().addArrow(arrow)
             }
@@ -37,6 +38,7 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
             }
             MotionEvent.ACTION_UP -> {
                 this.mainActivity.getCard().deselect()
+                this.mainActivity.movementInProgress = false
             }
         }
         
