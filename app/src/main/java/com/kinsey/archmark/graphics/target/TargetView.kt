@@ -13,8 +13,6 @@ import java.lang.Integer.min
 class TargetView (context: Context, var mainActivity: MainActivity): View(context) {
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
-    private var selectedMarker: ArrowMarker? = null
-
     val padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.getDisplayMetrics()).toInt()
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -31,10 +29,8 @@ class TargetView (context: Context, var mainActivity: MainActivity): View(contex
         )
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
-//                if (this.mainActivity.getCard().currentEnd.selected != null) {
-                    val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
-                    this.mainActivity.getCard().addArrow(arrow)
-//                }
+                val arrow = Arrow(polar.first, polar.second, this.mainActivity.getCard())
+                this.mainActivity.getCard().addArrow(arrow)
             }
             MotionEvent.ACTION_MOVE -> {
                 this.mainActivity.getCard().moveCurrentArrow(polar.first, polar.second)
