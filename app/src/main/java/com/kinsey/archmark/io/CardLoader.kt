@@ -2,11 +2,8 @@ package com.kinsey.archmark.io
 
 import com.kinsey.archmark.model.Arrow
 import com.kinsey.archmark.model.Card
-import com.kinsey.archmark.model.End
 import java.io.File
 import java.io.IOException
-import java.io.StringBufferInputStream
-import java.util.*
 
 data class Head(var time: Long, var total: Float, var arrows: Int)
 
@@ -65,67 +62,70 @@ object CardLoader {
             when (state) {
                 State.HEAD ->
                     if (rHead.matches(line)) state = State.HEAD_TIME
-
                     else throw IOException(makeErrorString(state, lineNum))
 
                 State.HEAD_TIME ->
                     if (rHeadTime.matches(line)) {
-                        card = Card((rHeadTime.find(line)?.destructured?.component1()?.toLong()) ?: 0)
+                        card =
+                            Card((rHeadTime.find(line)?.destructured?.component1()?.toLong()) ?: 0)
                         state = State.HEAD_TOTAL
-                    }
-
-                    else throw IOException(makeErrorString(state, lineNum))
+                    } else throw IOException(makeErrorString(state, lineNum))
 
                 State.HEAD_TOTAL ->
                     if (rHeadTotal.matches(line)) state = State.HEAD_ARROWS
-
                     else throw IOException(makeErrorString(state, lineNum))
 
                 State.HEAD_ARROWS ->
                     if (rHeadArrows.matches(line)) state = State.BODY
-
                     else throw IOException(makeErrorString(state, lineNum))
 
                 State.BODY ->
                     if (rBody.matches(line)) state = State.BODY_END_ARROW
-
                     else throw IOException(makeErrorString(state, lineNum))
 
                 State.BODY_END_ARROW ->
-                    if (rBodyEnd.matches(line)) {
-                        card!!.newEnd()
-                        state  = State.BODY_END_ARROW
+                    state = when {
+                        rBodyEnd.matches(line) -> {
+                            card!!.newEnd()
+                            State.BODY_END_ARROW
+                        }
+                        rBodyArrow.matches(line) -> State.BODY_ARROW_ANGLE
+                        else -> throw IOException(makeErrorString(state, lineNum))
                     }
-
-                    else if (rBodyArrow.matches(line)) state  = State.BODY_ARROW_ANGLE
-
-                    else throw IOException(makeErrorString(state, lineNum))
 
                 State.BODY_ARROW_ANGLE ->
                     if (rBodyArrowAngle.matches(line)) {
-                        arrowParams.add(rBodyArrowAngle.find(line)?.destructured?.component1() ?: "0.0")
+                        arrowParams.add(
+                            rBodyArrowAngle.find(line)?.destructured?.component1() ?: "0.0"
+                        )
                         state = State.BODY_ARROW_DISTANCE
-                    }
-
-                    else throw IOException(makeErrorString(state, lineNum))
+                    } else throw IOException(makeErrorString(state, lineNum))
 
                 State.BODY_ARROW_DISTANCE ->
                     if (rBodyDistance.matches(line)) {
-                        arrowParams.add(rBodyDistance.find(line)?.destructured?.component1() ?: "0.0")
+                        arrowParams.add(
+                            rBodyDistance.find(line)?.destructured?.component1() ?: "0.0"
+                        )
                         state = State.BODY_ARROW_FORSCORE
-                    }
-
-                    else throw IOException(makeErrorString(state, lineNum))
+                    } else throw IOException(makeErrorString(state, lineNum))
 
                 State.BODY_ARROW_FORSCORE ->
                     if (rBodyForScore.matches(line)) {
-                        arrowParams.add(rBodyForScore.find(line)?.destructured?.component1() ?: "true")
-                        card!!.addArrow(Arrow(arrowParams[0].toFloat(), arrowParams[1].toFloat(), card!!, arrowParams[2].toBoolean()))
+                        arrowParams.add(
+                            rBodyForScore.find(line)?.destructured?.component1() ?: "true"
+                        )
+                        card!!.addArrow(
+                            Arrow(
+                                arrowParams[0].toFloat(),
+                                arrowParams[1].toFloat(),
+                                card!!,
+                                arrowParams[2].toBoolean()
+                            )
+                        )
                         card!!.deselect()
                         arrowParams.clear()
                         state = State.BODY_END_ARROW
-                    }
-                    else throw IOException(makeErrorString(state, lineNum))
+                    } else throw IOException(makeErrorString(state, lineNum))
             }
 
 
