@@ -135,10 +135,52 @@ object CardLoader {
         return card!!
     }
 
-    fun loadHead(file: File): Head{
+    fun loadHead(file: File): Head {
+
+        var lineNum = 0
+        var state = State.HEAD
+
+        var head = Head(0, 0f, 0)
 
 
-        return Head(0, 0f,0)
+        file.forEachLine lineLoop@{
+            val line = it.replace(Regex("\\s"), "")
+
+            if (line.isEmpty()) {
+                return@lineLoop
+            }
+
+            when (state) {
+                State.HEAD ->
+                    if (rHead.matches(line)) state = State.HEAD_TIME
+                    else throw IOException(makeErrorString(state, lineNum))
+
+                State.HEAD_TIME ->
+                    if (rHeadTime.matches(line)) {
+                        head.time =
+                            (rHeadTime.find(line)?.destructured?.component1()?.toLong()) ?: 0
+                        state = State.HEAD_TOTAL
+                    } else throw IOException(makeErrorString(state, lineNum))
+
+                State.HEAD_TOTAL ->
+                    if (rHeadTotal.matches(line)) {
+                        head.total =
+                            (rHeadTotal.find(line)?.destructured?.component1()?.toFloat()) ?: 0f
+                        state = State.HEAD_ARROWS
+                    } else throw IOException(makeErrorString(state, lineNum))
+
+                State.HEAD_ARROWS ->
+                    if (rHeadArrows.matches(line)) {
+                        head.arrows =
+                            (rHeadTotal.find(line)?.destructured?.component1()?.toInt()) ?: 0
+                        state = State.BODY
+                    } else throw IOException(makeErrorString(state, lineNum))
+                State.BODY -> return@lineLoop
+                else -> throw IOException(makeErrorString(state, lineNum))
+            }
+            lineNum++
+        }
+        return head
     }
 
     private fun makeErrorString(state: State, lineNum: Int): String {
