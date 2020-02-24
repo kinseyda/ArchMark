@@ -119,11 +119,4 @@ class TableFragment(private val mainActivity: MainActivity): Fragment(), Observe
 
     }
 
-    private class TablerowOnClickListener:View.OnClickListener {
-        override fun onClick(v: View) {
-            println("Type of v" + v.javaClass.name)
-            v.setBackgroundColor(Color.BLACK)
-        }
-    };
-
 }
