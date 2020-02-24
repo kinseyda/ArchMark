@@ -13,7 +13,7 @@ import java.lang.Integer.min
 class TargetView (context: Context, var mainActivity: MainActivity): View(context) {
     private var arrowMarkers: MutableList<ArrowMarker> = mutableListOf<ArrowMarker>()
 
-    val padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.getDisplayMetrics()).toInt()
+    val padding = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10f, resources.getDisplayMetrics()).toInt()
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val cm = ConversionUtils.pixelToCm(
