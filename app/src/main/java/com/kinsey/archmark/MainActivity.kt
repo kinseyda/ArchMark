@@ -1,6 +1,8 @@
 package com.kinsey.archmark
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.AttributeSet
 import android.view.Menu
@@ -166,15 +168,26 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onLoadClicked(menuItem: MenuItem) {
-        try {
-            this.cardHistory = CardHistory(CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".amc")))
-            initHistory()
-            this.cardHistory.change()
-        }
-        catch(e: IOException) {
-            println(e.message)
+        val pickCardIntent = Intent(Intent.ACTION_ATTACH_DATA)
+        startActivityForResult(pickCardIntent, 1)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                try {
+                    this.cardHistory =
+                        CardHistory(CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".amc")))
+                    initHistory()
+                    this.cardHistory.change()
+                } catch (e: IOException) {
+                    println(e.message)
+                }
+            }
         }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_activity_toolbar, menu)
