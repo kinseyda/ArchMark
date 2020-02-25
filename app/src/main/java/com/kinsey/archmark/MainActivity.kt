@@ -160,14 +160,14 @@ class MainActivity : AppCompatActivity() {
 
 
     fun onSaveClicked(menuItem: MenuItem) {
-        val file = File(this.filesDir.toString() + "/Card" + ".txt")
+        val file = File(this.filesDir.toString() + "/Card" + ".amc")
         file.createNewFile()
         CardSaver.saveCard(this.getCard(), file)
     }
 
     fun onLoadClicked(menuItem: MenuItem) {
         try {
-            this.cardHistory = CardHistory(CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".txt")))
+            this.cardHistory = CardHistory(CardLoader.loadCard(File(this.filesDir.toString() + "/Card" + ".amc")))
             initHistory()
             this.cardHistory.change()
         }
